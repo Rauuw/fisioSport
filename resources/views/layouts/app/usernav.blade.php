@@ -12,7 +12,7 @@
                 </a>
 
                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                    <i class="fa fa-user"></i> <span class="text-dark">{{ Auth::user()->name }}</span>
+                    <i class="fa fa-user"></i> <span class="text-dark">Profile</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                     <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
