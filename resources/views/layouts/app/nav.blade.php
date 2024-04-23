@@ -1,7 +1,7 @@
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
         <a class="sidebar-brand" href="{{ route('home') }}">
-            <span class="align-middle">AdminKit</span>
+            <span class="align-middle">Therapy Sport Center</span>
         </a>
         <ul class="sidebar-nav">
             <li class="sidebar-header">
@@ -14,7 +14,8 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a data-bs-target="#analytics" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
+                <a data-bs-target="#analytics" data-bs-toggle="collapse" class="sidebar-link collapsed"
+                    aria-expanded="false">
                     <i class="fa-solid fa-chart-simple"></i>
                     <span class="align-middle">Analytics</span>
                 </a>
@@ -37,16 +38,19 @@
             <li class="sidebar-item">
                 <a class="sidebar-link" href="#">
                     <i class="fa-solid fa-envelope"></i>
-                    <span class="align-middle">Invoice</span>
+                    <span class="align-middle">Notificaciones</span>
                 </a>
+                <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="#">Crear notificación</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="#">Ver notificaciones</a></li>
+                </ul>
             </li>
 
             <li class="sidebar-header">
                 Components
             </li>
             <li class="sidebar-item">
-                <a data-bs-target="#ui" data-bs-toggle="collapse" class="sidebar-link collapsed"
-                    aria-expanded="false">
+                <a data-bs-target="#ui" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
                     <i class="fa-solid fa-layer-group"></i>
                     <span class="align-middle">UI Elements</span>
                 </a>
@@ -92,13 +96,11 @@
                     <span class="align-middle">DataTables</span>
                 </a>
                 <ul id="datatables" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                    <li class="sidebar-item"><a class="sidebar-link"
-                            href="#">Responsive Table <span
+                    <li class="sidebar-item"><a class="sidebar-link" href="#">Responsive Table <span
                                 class="sidebar-badge badge bg-primary">Pro</span></a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="#">Table with
                             Buttons <span class="sidebar-badge badge bg-primary">Pro</span></a></li>
-                    <li class="sidebar-item"><a class="sidebar-link"
-                            href="#">Column Search <span
+                    <li class="sidebar-item"><a class="sidebar-link" href="#">Column Search <span
                                 class="sidebar-badge badge bg-primary">Pro</span></a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="#">Fixed
                             Header <span class="sidebar-badge badge bg-primary">Pro</span></a></li>
