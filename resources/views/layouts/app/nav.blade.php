@@ -36,11 +36,13 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
-                    <i class="fa-solid fa-envelope"></i>
+                <a data-bs-target="#notifications" data-bs-toggle="collapse" class="sidebar-link collapsed"
+                    aria-expanded="false">
+                    <i class="fa-solid fa-chart-simple"></i>
                     <span class="align-middle">Notificaciones</span>
                 </a>
-                <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                <ul id="notifications" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar"
+                    style="">
                     <li class="sidebar-item"><a class="sidebar-link" href="#">Crear notificación</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="#">Ver notificaciones</a></li>
                 </ul>
