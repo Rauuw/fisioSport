@@ -9,12 +9,20 @@
     <form action="" method="POST">
         @csrf
         <div class="form-group">
-            <label for="cliente">Cliente</label>
-            <select name="cliente" id="cliente" class="form-control" style="width:25%">
+            <label for="paciente">Paciente</label>
+            <select name="paciente" id="paciente" class="form-control" style="width:25%">
                 {{-- @foreach ($clientes as $cliente)
                     <option value="{{$cliente->id}}">{{$cliente->nombre}} {{$cliente->apellidos}}</option>
                 @endforeach --}}
             </select>
+        </div>
+        <div class="form-group">
+            <label for="fecha_envio">Fecha de envio</label>
+            <input type="date" name="fecha_envio" id="fecha_envio" class="form-control" style="width: 25%">
+        </div>
+        <div class="form-group">
+            <label for="fisio_id">Fisioterapeuta</label>
+            <input type="number" name="fisio_id" id="fisio_id" class="form-control" style="width: 25%">
         </div>
         <div class="form-group">
             <label for="mensaje">Mensaje</label>
