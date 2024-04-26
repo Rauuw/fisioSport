@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Notificacion;
 use App\Models\Notificaciones;
 use Illuminate\Http\Request;
@@ -9,7 +10,11 @@ class NotificacionesController extends Controller
 {
     public function index()
     {
-        return view('notificaciones.index');
+        $pacientes = \App\Models\Paciente::join('users', 'users.id', '=', 'pacientes.user_id')
+            ->select('pacientes.*', 'users.name')
+            ->get();
+
+        return view('notificaciones.index_notificaciones', compact('pacientes'));
     }
 
     public function store(Request $request)
@@ -20,7 +25,9 @@ class NotificacionesController extends Controller
             'fisioterapeuta_id' => $request->input('fisioterapeuta_id'),
             'paciente_id' => $request->input('paciente_id'),
         ]);
-        
+
         // return redirect()->route('notificaciones.index')->with('success', 'Notificación guardada correctamente');
     }
+
+
 }

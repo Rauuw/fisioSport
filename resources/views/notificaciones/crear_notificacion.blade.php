@@ -1,7 +1,7 @@
 @extends('layouts.plantillabase')
 
 @section('title','Home')
-@section('h-title','Notificaciones')
+@section('h-title',' Crear notificacion')
 @section('card-title','')
 
 @section('content')

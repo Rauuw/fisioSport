@@ -9,3 +9,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::view('/crear_notificacion', 'notificaciones.crear_notificacion')->name('crear_notificacion');
 
 Route::post('/guardar_notificacion', [App\Http\Controllers\NotificacionesController::class, 'store'])->name('guardar_notificacion');
+
+Route::get('/ver_notificaciones',[App\Http\Controllers\NotificacionesController::class, 'index'])->name('ver_notificaciones');
+
+Route::view('/ver_mensajes/{id}', 'notificaciones.index_mensajes')->name('ver_mensajes');
