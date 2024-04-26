@@ -6,11 +6,11 @@
 
 @section('content')
 
-    <form action="" method="POST">
+    <form action="{{route('guardar_notificacion')}}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="paciente">Paciente</label>
-            <select name="paciente" id="paciente" class="form-control" style="width:25%">
+            <label for="paciente_id">Paciente</label>
+            <select name="paciente_id" id="paciente_id" class="form-control" style="width:25%">
                 {{-- @foreach ($clientes as $cliente)
                     <option value="{{$cliente->id}}">{{$cliente->nombre}} {{$cliente->apellidos}}</option>
                 @endforeach --}}
@@ -21,8 +21,8 @@
             <input type="date" name="fecha_envio" id="fecha_envio" class="form-control" style="width: 25%">
         </div>
         <div class="form-group">
-            <label for="fisio_id">Fisioterapeuta</label>
-            <input type="number" name="fisio_id" id="fisio_id" class="form-control" style="width: 25%">
+            <label for="fisioterapeuta_id">Fisioterapeuta</label>
+            <input type="number" name="fisioterapeuta_id" id="fisioterapeuta_id" class="form-control" style="width: 25%">
         </div>
         <div class="form-group">
             <label for="mensaje">Mensaje</label>
