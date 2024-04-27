@@ -29,9 +29,9 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    public function username()
+    public function email()
     {
-        return 'username';
+        return 'email';
     }
 
     public function showLoginForm()
@@ -42,7 +42,7 @@ class LoginController extends Controller
     protected function validateLogin(Request $request)
     {
         $this->validate($request, [
-            $this->username() => 'required|string',
+            $this->email() => 'required|string',
             'password' => 'required|string',
             //'g-recaptcha-response' => 'required|captcha',
         ]);

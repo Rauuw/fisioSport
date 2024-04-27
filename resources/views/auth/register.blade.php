@@ -35,36 +35,15 @@ register-box
             </div>
 
             <div class="row input-group mb-3">
-                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" placeholder="{{ __('Username') }}" required autofocus>
-
+                <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" placeholder="{{ __('lastname') }}" required autofocus>
+                
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-user"></span>
                     </div>
                 </div>
 
-                @error('username')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-
-            <div class="row input-group mb-3">
-                <select id="usertype_id" aria-label="Default select example" class="form-control @error('usertype_id') is-invalid @enderror" name="usertype_id" required autofocus>
-                    <option value="">SELECCIONE</option>
-                    @foreach($usertype as $usert)
-                        <option value="{{ $usert->id }}" @if(old('usertype_id') == $usert->id) selected @endif>{{ $usert->type }}</option>
-                    @endforeach
-                </select>
-
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="fas fa-users"></span>
-                    </div>
-                </div>
-
-                @error('usertype_id')
+                @error('lastname')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -111,6 +90,27 @@ register-box
                         <span class="fas fa-lock"></span>
                     </div>
                 </div>
+            </div>
+
+            
+            <div class="row input-group mb-3">
+                <select id="tipo" aria-label="Default select example" class="form-control @error('tipo') is-invalid @enderror" name="tipo" required autofocus>
+                    <option value="">SELECCIONE</option>
+                    <option value="P">P</option>
+                    <option value="M">M</option>
+                </select>
+
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-users"></span>
+                    </div>
+                </div>
+
+                @error('tipo')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             
             <div class="social-auth-links text-center mt-2 mb-3">

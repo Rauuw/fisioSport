@@ -49,20 +49,21 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
+    {   
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'usertype_id' => ['required'],
+            'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'tipo' => ['required', 'string', 'size:1', 'in:P,M'],
+
         ]);
     }
 
     public function showRegistrationForm()
     {
-        $usertype = Usertype::all();
-        return view('auth.register', compact('usertype'));
+       
+        return view('auth.register'); 
     }
 
     /**
@@ -74,11 +75,17 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
+
             'name' => $data['name'],
-            'username' => $data['username'],
+            'lastname' => $data['lastname'],
             'email' => $data['email'],
-            'usertype_id' => $data['usertype_id'],
             'password' => Hash::make($data['password']),
+            'tipo' => $data['tipo'],
         ]);
+    }
+
+    protected function registered()
+    {
+        return redirect('/');
     }
 }

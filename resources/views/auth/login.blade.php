@@ -20,7 +20,7 @@ login-box
                 <form method="POST" action="{{ route('login') }}" autocomplete="off">
                     @csrf
                     <div class="row input-group mb-3">
-                        <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" placeholder="{{ __('Username') }}" required autofocus>
+                        <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="{{ __('Email') }}" required autofocus>
                             
                         <div class="input-group-append">
                             <div class="input-group-text">
