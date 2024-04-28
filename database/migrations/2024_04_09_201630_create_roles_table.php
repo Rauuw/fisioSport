@@ -13,13 +13,7 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {Schema::create('roles', function (Blueprint $table) {
-        $table->id();
-        $table->string('name')->unique();
-        $table->string('guard_name')->default('web');
-        $table->timestamps();
-    });
-
+    {
         $role1 = Role::create(['name' => 'fisioterapeuta']);
         $role2 = Role::create(['name' => 'paciente']);
      

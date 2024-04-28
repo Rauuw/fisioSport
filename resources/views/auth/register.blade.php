@@ -14,7 +14,7 @@ register-box
         <a href="{{ route('login') }}" class="h1"><b>Admin</b>LTE</a>
     </div>
     <div class="card-body">
-        <p class="login-box-msg">Registrar un nuevo usuario</p>
+        <p class="login-box-msg">Registrar un nuevo Fisiotera</p>
 
         <form method="POST" action="{{ route('register') }}" autocomplete="off">
             @csrf
@@ -94,10 +94,10 @@ register-box
 
             
             <div class="row input-group mb-3">
-                <select id="tipo" aria-label="Default select example" class="form-control @error('tipo') is-invalid @enderror" name="tipo" required autofocus>
+                <select id="especialidad" aria-label="Default select example" class="form-control @error('especialidad') is-invalid @enderror" name="especialidad" required autofocus>
                     <option value="">SELECCIONE</option>
-                    <option value="P">P</option>
-                    <option value="M">M</option>
+                    <option value="ejercicios">Masaje terapéutico</option>
+                    <option value="lesiones">Lesiones musculoesqueléticas</option>
                 </select>
 
                 <div class="input-group-append">

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Fisioterapeuta extends Model
 {
     use HasFactory;
-    protected $table = 'fiseoterapeutas';
+    protected $table = 'fisioterapeutas';
 
     protected $fillable = [
         'especialidad', 'user_id',

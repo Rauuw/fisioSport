@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Fisioterapeuta;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use App\Models\Usertype;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+
+use Spatie\Permission\Models\Role;
 
 class RegisterController extends Controller
 {
@@ -49,17 +51,35 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {   
+    {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'tipo' => ['required', 'string', 'size:1', 'in:P,M'],
-
+            'especialidad' => ['required', 'string', 'max:255'],
         ]);
     }
-
+    
+    protected function create(array $data)
+    {
+        $user = User::create([
+            'name' => $data['name'],
+            'lastname' => $data['lastname'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'tipo' => 'F',
+        ]);
+    
+        $userId = $user->id;
+        $fisioterapeuta = Fisioterapeuta::create([
+            'especialidad' => $data['especialidad'],
+            'user_id' => $userId
+        ]);
+    
+        return $user;
+    }
+    
     public function showRegistrationForm()
     {
        
@@ -72,18 +92,6 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
-    {
-        return User::create([
-
-            'name' => $data['name'],
-            'lastname' => $data['lastname'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'tipo' => $data['tipo'],
-        ]);
-    }
-
     protected function registered()
     {
         return redirect('/');
