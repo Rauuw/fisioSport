@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('mensaje');
             $table->date('fecha_envio');
+            $table->date('tipo');
 
             $table->foreignId('fisioterapeuta_id')->nullable()
             ->constrained('fisioterapeutas')

@@ -12,7 +12,7 @@ class Notificaciones extends Model
     protected $table = 'notificaciones';
 
     protected $fillable = [
-        'mensaje', 'fecha_envio', 'fisioterapeuta_id','paciente_id',
+        'mensaje', 'fecha_envio','tipo', 'fisioterapeuta_id','paciente_id',
     ];
 
     public function fisioterapeuta()
