@@ -14,7 +14,17 @@
                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
                     <i class="fa fa-user"></i> <span class="text-dark">{{ Auth::user()->name }}</span>
                 </a>
-                <div class="dropdown-menu dropdown-menu-end">
+
+                <div>
+                <div class="dropdown">
+                   
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        
+                    </ul>
+                </div>
+                </div>
+                
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i>
                         Profile</a>
                     <div class="dropdown-divider"></div>

@@ -86,32 +86,6 @@ body {
     background-color: #fff;
 }
 
-.table tbody tr td:nth-of-type(1) {
-    text-align: center;
-    min-width: 70px;
-    max-width: 70px;
-}
-
-.table tbody tr td:nth-of-type(2) {
-    min-width: 300px;
-    max-width: 300px;
-}
-
-
-.table tbody tr td:nth-of-type(3) {
-    min-width: 150px;
-    max-width: 150px;
-}
-
-.table tbody tr td:nth-of-type(4) {
-    min-width: 300px;
-    max-width: 300px;
-}
-
-.table tbody tr td:nth-of-type(5) {
-    min-width: 50px;
-    max-width: 50px;
-}
 
 .table tbody tr {
     box-shadow: 0px 2px 3px #1f1f1f1a;

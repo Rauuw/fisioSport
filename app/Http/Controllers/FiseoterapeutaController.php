@@ -44,6 +44,8 @@ class FiseoterapeutaController extends Controller
             ]);
         }
 
+        $user->assignRole('paciente');
+
         $pacientes = \App\Models\Paciente::join('users', 'users.id', '=', 'pacientes.user_id')
         ->select('pacientes.*', 'users.name')
         ->get();
@@ -52,5 +54,32 @@ class FiseoterapeutaController extends Controller
       return view('fisioterapeuta.listar_pacientes', compact('user','pacientes'));
     }
 
+    public function edit($id)
+    {
+        $paciente = Paciente::findOrFail($id);
+        return view('fisioterapeuta.editar_paciente', compact('paciente'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validación de los datos del formulario
+        $request->validate([
+            // Aquí van las reglas de validación
+        ]);
+
+        $paciente = Paciente::findOrFail($id);
+        $paciente->update([
+            // Aquí actualizas los campos necesarios
+        ]);
+
+        return redirect()->route('pacientes.index')->with('success', 'Paciente actualizado exitosamente.');
+    }
+
+    public function destroy($id)
+    {
+        $paciente = Paciente::findOrFail($id);
+        $paciente->delete();
+        return redirect()->route('pacientes.index')->with('success', 'Paciente eliminado exitosamente.');
+    }
 
 }

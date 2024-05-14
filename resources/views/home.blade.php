@@ -1,8 +1,10 @@
+@hasanyrole('fisioterapeuta')
 @extends('layouts.plantillabase')
 
 @section('title','Home')
 @section('h-title','Blank Page')
 @section('card-title','Empty card')
+
 
 @section('content')
     @if (session('status'))
@@ -13,3 +15,7 @@
 
     {{ __('You are logged in!') }}
 @endsection
+@endhasanyrole
+@hasanyrole('paciente')
+hola
+@endhasanyrole

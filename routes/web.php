@@ -12,4 +12,7 @@ Route::middleware(['auth'])->group(function () {
     Route::view('/ver_mensajes/{id}', 'notificaciones.index_mensajes')->name('ver_mensajes');
     Route::get('/paciente',[App\Http\Controllers\FiseoterapeutaController::class, 'index'])->name('listar_pacientes');
     Route::post('/crear_paciente',[App\Http\Controllers\FiseoterapeutaController::class, 'crearPaciente'])->name('crear_paciente');
+
+    Route::get('/rutina/{id}',[App\Http\Controllers\RutinaController::class, 'index'])->name('listar_rutina');
+
 });
