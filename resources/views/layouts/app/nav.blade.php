@@ -28,6 +28,16 @@
                 </ul>
             </li>
 
+            <li class="sidebar-item">
+                <a data-bs-target="#ejercicios" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span class="align-middle">Ejercicios</span>
+                </a>
+                <ul id="ejercicios" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('tracking') }}">Realizar ejercicios</a></li>
+                </ul>
+            </li>
+
            <!--  <li class="sidebar-header">
                 Components
             </li>
