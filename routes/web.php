@@ -14,5 +14,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/crear_paciente',[App\Http\Controllers\FiseoterapeutaController::class, 'crearPaciente'])->name('crear_paciente');
 
     Route::get('/rutina/{id}',[App\Http\Controllers\RutinaController::class, 'index'])->name('listar_rutina');
+    Route::get('/ejercicios/',[App\Http\Controllers\EjercicioController::class, 'index'])->name('listar_ejercicios');
+    Route::post('/ejercicio', [App\Http\Controllers\EjercicioController::class, 'store'])->name('ejercicio.store');
+    Route::delete('/ejercicio/{id}', [App\Http\Controllers\EjercicioController::class, 'destroy'])->name('ejercicio.destroy');
+    Route::get('/ejercicio/{id}/edit', [App\Http\Controllers\EjercicioController::class, 'edit'])->name('ejercicio.edit');
+    Route::put('/ejercicio/{id}', [App\Http\Controllers\EjercicioController::class, 'update'])->name('ejercicio.update');
 
 });

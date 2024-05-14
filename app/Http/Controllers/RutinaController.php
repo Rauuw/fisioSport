@@ -10,8 +10,8 @@ class RutinaController extends Controller
     public function index($id)
     {
         $pacientes = Paciente::join('users', 'users.id', '=', 'pacientes.user_id')
-        ->where('pacientes.user_id', $id) // Filtrar por el id proporcionado
-        ->select('pacientes.*', 'users.name')
+        ->where('pacientes.user_id', $id)
+        ->select('pacientes.*', 'users.*')
         ->get();
         return view('rutina.index', ['pacientes' => $pacientes]);
     }

@@ -27,6 +27,7 @@
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ route('ver_notificaciones') }}">Ver notificaciones</a></li>
                 </ul>
             </li>
+         <li class="sidebar-item"><a href="{{ route('listar_ejercicios') }}" class="sidebar-link"><i class="fa-solid fa-chart-simple"></i>Ejercicios</a></li>
 
            <!--  <li class="sidebar-header">
                 Components
