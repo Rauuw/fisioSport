@@ -20,4 +20,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/ejercicio/{id}/edit', [App\Http\Controllers\EjercicioController::class, 'edit'])->name('ejercicio.edit');
     Route::put('/ejercicio/{id}', [App\Http\Controllers\EjercicioController::class, 'update'])->name('ejercicio.update');
 
+  //  Route::post('/rutina/creare', [App\Http\Controllers\RutinaController::class, 'creare'])->name('rutina.creare');
+    Route::post('/crear-rutina', [App\Http\Controllers\RutinaController::class, 'create'])->name('crear_rutina');
+Route::get('/seleccionar-rutina/{id}', [App\Http\Controllers\RutinaController::class, 'select'])->name('seleccionar_rutina');
 });

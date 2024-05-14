@@ -6,5 +6,5 @@ use Illuminate\Http\Request;
 
 class RutinaEjercicioController extends Controller
 {
-    //
+  
 }

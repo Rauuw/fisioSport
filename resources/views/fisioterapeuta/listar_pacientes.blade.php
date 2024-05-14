@@ -110,6 +110,23 @@
                             <!-- Input oculto -->
                             <input type="hidden" name="hasHistorial" id="hiddenHasHistorial" value="false">
                         </div>
+
+                        <br>
+                        <strong>Rutina</strong>
+
+                        <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre de la Rutina</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sesion" class="form-label">Número de Sesiones</label>
+                        <input type="number" class="form-control" id="sesion" name="sesion">
+                    </div>
+
                         <button type="submit" class="btn btn-primary">Guardar Paciente</button>
                     </form>
                 </div>
