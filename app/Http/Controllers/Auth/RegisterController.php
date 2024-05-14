@@ -70,7 +70,9 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'tipo' => 'F',
         ]);
-    
+        
+        $user->assignRole('fisioterapeuta');
+
         $userId = $user->id;
         $fisioterapeuta = Fisioterapeuta::create([
             'especialidad' => $data['especialidad'],

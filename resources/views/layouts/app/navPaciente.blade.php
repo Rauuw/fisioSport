@@ -14,7 +14,7 @@
                 </a>
             </li>
 
-            <li class="sidebar-item"><a href="{{ route('listar_pacientes') }}" class="sidebar-link"><i class="fa-solid fa-chart-simple"></i>Pacientes</a></li>
+            <li class="sidebar-item"><a href="" class="sidebar-link"><i class="fa-solid fa-chart-simple"></i>Rutinas</a></li>
            
 
             <li class="sidebar-item">
@@ -27,41 +27,8 @@
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ route('ver_notificaciones') }}">Ver notificaciones</a></li>
                 </ul>
             </li>
-         <li class="sidebar-item"><a href="{{ route('listar_ejercicios') }}" class="sidebar-link"><i class="fa-solid fa-chart-simple"></i>Ejercicios</a></li>
 
-            <li class="sidebar-item">
-                <a data-bs-target="#ejercicios" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
-                    <i class="fa-solid fa-chart-simple"></i>
-                    <span class="align-middle">Ejercicios</span>
-                </a>
-                <ul id="ejercicios" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
-                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('tracking') }}">Realizar ejercicios</a></li>
-                </ul>
-            </li>
-
-           <!--  <li class="sidebar-header">
-                Components
-            </li>
-            <li class="sidebar-item">
-                <a data-bs-target="#ui" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
-                    <i class="fa-solid fa-layer-group"></i>
-                    <span class="align-middle">UI Elements</span>
-                </a>
-                <ul id="ui" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                    <li class="sidebar-item"><a class="sidebar-link" href="#">Alerts</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="#">Buttons</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="#">Cards</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="#">General</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="#">Grid</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="#">Modals</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="#">Offcanvas <span class="sidebar-badge badge bg-primary">Pro</span></a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="#">Placeholders <span class="sidebar-badge badge bg-primary">Pro</span></a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="#">Tabs <span class="sidebar-badge badge bg-primary">Pro</span></a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="#">Typography</a></li>
-                </ul>
-            </li> -->
-
-            <li class="sidebar-header">
+          <!--   <li class="sidebar-header">
                 Plugins &amp; Addons
             </li>
             <li class="sidebar-item">
@@ -103,7 +70,7 @@
                     <li class="sidebar-item"><a class="sidebar-link" href="#">Chart.js</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="#">ApexCharts <span class="sidebar-badge badge bg-primary">Pro</span></a></li>
                 </ul>
-            </li>
+            </li> -->
         </ul>
     </div>
 </nav>
