@@ -12,7 +12,7 @@ class TrackingController extends Controller
         $output = shell_exec('python ../IA/main.py');
 
         // Devolver la vista tracking.blade.php con la salida como datos
-        return view('tracking.tracking', ['output' => $output])->render();
+        return view('ejerciciosIA.martillo', ['output' => $output])->render();
         // return view('tracking.tracking');
     }
 }

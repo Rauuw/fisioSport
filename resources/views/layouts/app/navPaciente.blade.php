@@ -14,21 +14,35 @@
                 </a>
             </li>
 
-            <li class="sidebar-item"><a href="" class="sidebar-link"><i class="fa-solid fa-chart-simple"></i>Rutinas</a></li>
-           
-
             <li class="sidebar-item">
-                <a data-bs-target="#notifications" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
-                    <i class="fa-solid fa-chart-simple"></i>
-                    <span class="align-middle">Notificaciones</span>
+                <a data-bs-target="#rutinas" data-bs-toggle="collapse" class="sidebar-link collapsed"
+                    aria-expanded="false">
+                    <i class="fa-solid fa-dumbbell"></i>
+                    <span class="align-middle">Rutinas</span>
                 </a>
-                <ul id="notifications" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
-                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('crear_notificacion') }}">Crear notificación</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('ver_notificaciones') }}">Ver notificaciones</a></li>
+                <ul id="rutinas" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar"
+                    style="">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('martillo') }}">Ejercicio 1</a></li>
                 </ul>
             </li>
 
-          <!--   <li class="sidebar-header">
+
+            <li class="sidebar-item">
+                <a data-bs-target="#notifications" data-bs-toggle="collapse" class="sidebar-link collapsed"
+                    aria-expanded="false">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span class="align-middle">Notificaciones</span>
+                </a>
+                <ul id="notifications" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar"
+                    style="">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('crear_notificacion') }}">Crear
+                            notificación</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('ver_notificaciones') }}">Ver
+                            notificaciones</a></li>
+                </ul>
+            </li>
+
+            <!--   <li class="sidebar-header">
                 Plugins &amp; Addons
             </li>
             <li class="sidebar-item">
