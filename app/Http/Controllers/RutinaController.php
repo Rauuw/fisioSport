@@ -8,19 +8,35 @@ use App\Models\Paciente;
 use Illuminate\Http\Request;
 use App\Models\Rutina;
 use App\Models\RutinaEjercicio;
-
+use Psy\Readline\Hoa\Console;
+use Illuminate\Support\Facades\DB;
 class RutinaController extends Controller
-{ 
+{
     public function index($id)
-    {
+    { 
         $pacientes = Paciente::join('users', 'users.id', '=', 'pacientes.user_id')
         ->where('pacientes.user_id', $id)
         ->select('pacientes.*', 'users.*')
         ->get();
-
         $ejercicios = Ejercicio::all();
         $rutinas = Rutina::all();
-        return view('rutina.index', ['pacientes' => $pacientes,'ejercicios'=>$ejercicios,'rutinas' => $rutinas]);
+
+        $pacientesEjercicioId = Paciente::join('users', 'users.id', '=', 'pacientes.user_id')
+        ->where('pacientes.user_id', $id)
+        ->select('pacientes.id')
+        ->get();
+        
+        $ejerciciospaciente = Ejercicio::join('rutina_ejercicio', 'ejercicio.id', '=', 'rutina_ejercicio.ejercicio_id')
+        ->where('rutina_ejercicio.paciente_id', $pacientesEjercicioId[0]->id)
+        ->select('ejercicio.*')
+        ->get();
+
+        return view('rutina.index', 
+        ['pacientes' => $pacientes,
+        'ejercicios'=>$ejercicios,
+        'rutinas' => $rutinas, 
+        'ejerciciospaciente' => $ejerciciospaciente
+    ]);
     }
 
     public function create(Request $request)
@@ -30,7 +46,7 @@ class RutinaController extends Controller
             'nombre' => 'required|string|max:255',
             'descripcion' => 'required|string',
             'sesion' => 'required|integer',
-       ]);
+    ]);
 
         // Crear una nueva rutina
         $rutina = new Rutina();
@@ -46,26 +62,41 @@ class RutinaController extends Controller
 
     }
 
-    public function select($id, $idRutina)
-    {
-        $rutina = Rutina::findOrFail($id); // Ejemplo: obtiene la rutina por su ID
+    public function select($rutina_id, $paciente_id)
+    { 
+        $rutinaid = Rutina::findOrFail($rutina_id); 
+        $pacientes = Paciente::join('users', 'users.id', '=', 'pacientes.user_id')
+        ->where('pacientes.user_id', $paciente_id)
+        ->select('pacientes.*', 'users.*')
+        ->get();
+        $ejercicios = Ejercicio::all();
+        $rutinas = Rutina::all();
 
-        return view('seleccionar_rutina', ['rutina' => $rutina]);
+        return view('rutina.index', ['rutinaid' => $rutinaid, 'pacientes' => $pacientes,'ejercicios'=>$ejercicios,'rutinas' => $rutinas]);
     }
-    public function crearRutinaEjercicio(Request $request, $pacienteId){
+
+
+
+    public function addExerciseToRoutine(Request $request)
+    {
         $request->validate([
-            'ejercicios' => 'required|array',
-            'ejercicios.*' => 'exists:ejercicios,id', // Asegurar que los IDs de los ejercicios existen en la tabla de ejercicios
-            $ejercicios = $request->input('ejercicios'),
+            'rutina_id' => 'required|integer',
+            'ejercicio_id' => 'required|integer',
+            'paciente_id' => 'required|integer',
         ]);
-            // Asignar ejercicios a la rutina
-            foreach ($ejercicios as $ejercicioId) {
-                $rutinaEjercicio = new RutinaEjercicio();
-                $rutinaEjercicio->rutina_id = $rutina->id;
-                $rutinaEjercicio->ejercicio_id = $ejercicioId;
-                $rutinaEjercicio->paciente_id = $pacienteId; // Asignar el ID del paciente a la relación rutina-ejercicio
-                // Otros campos...
-                $rutinaEjercicio->save();
-            }
+        $pacientes = Paciente::join('users', 'users.id', '=', 'pacientes.user_id')
+        ->where('pacientes.user_id', $request->input('paciente_id'))
+        ->select('pacientes.*')
+        ->get();
+
+         $rutinaEjercicio = new RutinaEjercicio();
+            $rutinaEjercicio->rutina_id =$request->input('rutina_id');
+            $rutinaEjercicio->ejercicio_id =$request->input('ejercicio_id');
+            $rutinaEjercicio->paciente_id =$pacientes[0]->id;
+            $rutinaEjercicio->accion = false;
+            $rutinaEjercicio->fecha = now();
+            $rutinaEjercicio->save();
+
+            return redirect()->back()->with(['success' => 'Ejercicio añadido a la rutina exitosamente.']);
     }
 }

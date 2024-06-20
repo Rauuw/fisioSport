@@ -111,7 +111,7 @@
                             <input type="hidden" name="hasHistorial" id="hiddenHasHistorial" value="false">
                         </div>
 
-                        <br>
+                       <!--  <br>
                         <strong>Rutina</strong>
 
                         <div class="mb-3">
@@ -125,7 +125,7 @@
                     <div class="mb-3">
                         <label for="sesion" class="form-label">Número de Sesiones</label>
                         <input type="number" class="form-control" id="sesion" name="sesion">
-                    </div>
+                    </div> -->
 
                         <button type="submit" class="btn btn-primary">Guardar Paciente</button>
                     </form>
@@ -179,7 +179,7 @@
                         </div> -->
                     </td>
                     <td>
-                        sesion
+                        3
                     </td>
                     <td>
                         <div class="row">

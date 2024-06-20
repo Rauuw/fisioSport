@@ -30,7 +30,7 @@ class EjercicioController extends Controller
             'nombre' => $request->nombre,
             'duracion' => $request->duracion,
             'descripcion' => $request->descripcion,
-            'repeticiones' => 0,
+            'repeticiones' => $request->repeticiones,
             'url_video_demostrativo' => $videoPath,
         ]);
 
@@ -38,6 +38,7 @@ class EjercicioController extends Controller
         return redirect()->back()->with('success', 'Video subido exitosamente.');
     }
 
+    
     public function edit($id)
     {
         $ejercicio = Ejercicio::find($id);
