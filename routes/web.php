@@ -14,6 +14,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/crear_paciente', [App\Http\Controllers\FiseoterapeutaController::class, 'crearPaciente'])->name('crear_paciente');
     
     Route::view('/martillo', 'ejerciciosIA.martillo')->name('martillo');
+    Route::view('/entrelazada', 'ejerciciosIA.entrelazada')->name('entrelazada');
+    Route::view('/lateral_espalda', 'ejerciciosIA.lateralespalda')->name('lateral');
     Route::get('/tracking', [App\Http\Controllers\TrackingController::class, 'trackArms'])->name('tracking');
 
     Route::get('/rutina/{id}', [App\Http\Controllers\RutinaController::class, 'index'])->name('listar_rutina');

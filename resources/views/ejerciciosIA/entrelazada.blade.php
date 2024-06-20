@@ -59,7 +59,7 @@
         function startVideo() {
             var videoFeed = document.getElementById('video');
             videoFeed.style.display = 'block';
-            videoFeed.src = 'http://localhost:5000/calentamiento';
+            videoFeed.src = 'http://localhost:5000/entrelazadas';
         }
     </script>
 

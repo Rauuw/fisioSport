@@ -24,6 +24,14 @@
                     style="">
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ route('martillo') }}">Ejercicio 1</a></li>
                 </ul>
+                <ul id="rutinas" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar"
+                    style="">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('entrelazada') }}">Ejercicio 2</a></li>
+                </ul>
+                <ul id="rutinas" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar"
+                    style="">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('lateral') }}">Ejercicio 3</a></li>
+                </ul>
             </li>
 
 
