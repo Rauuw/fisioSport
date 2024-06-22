@@ -17,5 +17,5 @@
 @endsection
 @endhasanyrole
 @hasanyrole('paciente')
-hola
+
 @endhasanyrole
