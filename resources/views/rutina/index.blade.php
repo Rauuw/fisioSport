@@ -106,7 +106,7 @@
     <tr>
         <td>Extension de espalda</td>
         <td>
-            <iframe width="120" height="80" src="" frameborder="0" allowfullscreen></iframe>
+            <iframe width="120" height="80" src="../../../public/storage/videos/" frameborder="0" allowfullscreen></iframe>
         </td>
         <td>16/06/2024</td>
     </tr>

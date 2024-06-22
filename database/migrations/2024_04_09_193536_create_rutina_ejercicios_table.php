@@ -15,9 +15,9 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->boolean('accion');
             $table->date('fecha');
-            $table->date('tiempo_ejercicio');
-            $table->date('cantidad_repeticiones');
-            $table->date('motivo');
+            $table->time('tiempo_ejercicio')->nullable();
+            $table->integer('cantidad_repeticiones')->nullable();
+            $table->string('motivo')->nullable();
 
             $table->foreignId('rutina_id')->nullable()
             ->constrained('rutinas')
