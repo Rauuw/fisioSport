@@ -19,7 +19,7 @@ class RutinaEjercicioController extends Controller
 
     public function getFisioByPaciente($id)
     {
-        $fisio = User::where('id', $id)
+        $fisio = Paciente::where('id', $id)
             ->value('fisioterapeuta_id');
         return $fisio;
     }
