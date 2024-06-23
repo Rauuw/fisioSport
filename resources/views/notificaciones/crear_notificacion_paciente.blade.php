@@ -9,13 +9,6 @@
     <form action="{{ route('guardar_notificacion_fisio') }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="paciente_id">Paciente</label>
-            <select name="paciente_id" id="paciente_id" class="form-control" style="width:25%">
-                @inject('rutinaController', 'App\Http\Controllers\RutinaEjercicioController')
-                @foreach ($rutinaController->getAllPacientesByFisio(auth()->user()->id) as $paciente)
-                    <option value="{{ $paciente->id }}">{{ $paciente->name }}</option>
-                @endforeach
-            </select>
         </div>
         <div class="form-group">
             <label for="fecha_envio">Fecha de envio</label>
@@ -24,10 +17,10 @@
         </div>
         <div class="form-group">
             <label for="fisioterapeuta_id">Fisioterapeuta</label>
-            <input type="hidden" name="fisioterapeuta_id" id="fisioterapeuta_id" class="form-control"
-                value="{{ auth()->user()->id }}">
-            <input type="text" name="fisioterapeuta_id" id="fisioterapeuta_id" class="form-control" style="width: 25%"
-                value="{{ auth()->user()->id }}" readonly>
+            @inject('rutinaController', 'App\Http\Controllers\RutinaEjercicioController')
+            <?php $fisioterapeuta_id = $rutinaController->getFisioByPaciente(auth()->user()->id) ?>
+            <input type="number" name="fisioterapeuta_id" id="fisioterapeuta_id" class="form-control"
+                value="{{ $fisioterapeuta_id }}" readonly>
         </div>
         <div class="form-group">
             <label for="mensaje">Mensaje</label>

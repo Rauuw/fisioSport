@@ -14,7 +14,9 @@
                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
                     <i class="fa fa-user"></i> <span class="text-dark">{{ Auth::user()->name }}</span>
                 </a>
-
+                <span class="badge rounded-pill bg-warning">
+                    
+                </span>
                 <div>
                 <div class="dropdown">
                    

@@ -43,7 +43,7 @@
                 </a>
                 <ul id="notifications" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar"
                     style="">
-                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('crear_notificacion') }}">Crear
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('crear_notificacion_paciente') }}">Crear
                             notificación</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ route('ver_notificaciones') }}">Ver
                             notificaciones</a></li>
