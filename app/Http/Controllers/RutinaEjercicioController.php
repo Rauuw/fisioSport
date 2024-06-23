@@ -38,18 +38,27 @@ class RutinaEjercicioController extends Controller
         return $fisio;
     }
 
+    //PUT
     public function saveCorrecto(Request $request) {
         $noti = new NotificacionesController();
         $id_paciente = $noti->getPacienteByUser(auth()->user()->id);
         $segundos = intval($request->input('segundos'));
-        RutinaEjercicio::create([
-            'accion' => True,
-            'fecha' => now()->format('Y-m-d'),
-            'tiempo_ejercicio' => $segundos,
-            'cantidad_repeticiones' => 10,
-            'motivo' => 'Ejercicio correcto',
-            'paciente_id' => $id_paciente
-        ]);
+    
+        $rutinaEjercicio = new RutinaEjercicio();
+        
+        $rutinaEjercicio->accion = true;
+        $rutinaEjercicio->fecha = now()->format('Y-m-d');
+        $rutinaEjercicio->tiempo_ejercicio = $segundos;
+        $rutinaEjercicio->cantidad_repeticiones = 10;
+        $rutinaEjercicio->motivo = 'Ejercicio correcto';
+        $rutinaEjercicio->paciente_id = $id_paciente;
+    
+        $rutinaEjercicio->save();
+    }
+
+    //PUT
+    public function saveIncorrecto(Request $request) {  
+        
     }
     
 }
