@@ -28,6 +28,12 @@
                             <span class="text nav-text">Pacientes</span>
                         </a>
                     </li>
+                    <li class="nav-link">
+                        <a href="{{ route('rutina_ejercicio') }}">
+                            <i class='bx bx-run icon'></i>
+                            <span class="text nav-text">Rutinas</span>
+                        </a>
+                    </li>
 
                     <li class="nav-link">
                         <a href="{{ route('listar_ejercicios') }}">
@@ -36,21 +42,16 @@
                         </a>
                     </li>
 
-                
-                    <li class="nav-link">
-    <a href="#" class="toggle-link" data-target="#ejercicios">
-        <i class='bx bx-run icon'></i>
-        <span class="text nav-text">Ejercicios</span>
-    </a>
-    <ul id="ejercicios" class="sub-menu">
-        <li class="nav-link">
-            <a href="{{ route('tracking') }}">
-                <i class='bx bx-right-arrow-alt icon'></i>
-                <span class="text nav-text">Realizar ejercicios</span>
-            </a>
-        </li>
-    </ul>
-</li>
+                   
+                   <!--  <ul id="ejercicios" class="sub-menu">
+                        <li class="nav-link">
+                            <a href="{{ route('tracking') }}">
+                                <i class='bx bx-right-arrow-alt icon'></i>
+                                <span class="text nav-text">Realizar ejercicios</span>
+                            </a>
+                        </li>
+                    </ul> -->
+
 
                 </ul>
             </div>

@@ -1,22 +1,30 @@
 @extends('layouts.plantillabase')
 
 @section('title', 'Paciente')
-@section('h-title')
-    Rutina para <b>{{ $pacientes[0]->name }} {{ $pacientes[0]->lastname }}</b>
-@endsection
+@section('h-title', 'Gestionar Rutina')
+
 @section('card-title', '')
 
 @section('content')
 <div class="container-bottom-3">
 
-    @if ($pacientes->isNotEmpty() ) 
     <div class="row">
-        <div class="col sm-8">
+        <div class="col-sm-3 ">
+            <button type="button" class="section4_btn btn4" style="color: white;" data-bs-toggle="modal" data-bs-target="#modalRutinas">
+                Crear Rutina
+            </button>
         </div>
         <div class="col sm-4">
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalRutinas">
-                Seleccionar Rutina
-            </button>
+        @if($rutinas->isEmpty())
+                    <p>No hay rutinas disponibles.</p>
+                    @else
+                    <select class="form-select" id="rutina-select">
+                        <option value="">Seleccione una rutina</option>
+                        @foreach($rutinas as $rutina)
+                            <option value="{{ $rutina->id }}">{{ $rutina->nombre }}</option>
+                        @endforeach
+                    </select>
+                    @endif
         </div>
     </div>
 
@@ -25,25 +33,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalRutinasLabel">Seleccionar o Crear Rutina</h5>
+                    <h5 class="modal-title" id="modalRutinasLabel">Crear Rutina</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    @if($rutinas->isEmpty())
-                    <p>No hay rutinas disponibles.</p>
-                    @else
-                    <div class="mb-3">
-                        <label for="rutina" class="form-label">Seleccionar Rutina</label>
-                        <select class="form-select" id="rutina">
-                            <option value="">Seleccione una rutina</option>
-                            @foreach($rutinas as $rutina)
-                                <option value="{{ route('seleccionar_rutina', ['rutina_id' => $rutina->id, 'paciente_id' => $pacientes[0]->id]) }}">{{ $rutina->nombre }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    @endif
-                    <!-- Formulario para crear una nueva rutina -->
-                    <form action="{{ route('crear_rutina') }}" method="POST">
+                    <form action="{{ route('rutina_create') }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre de la Nueva Rutina:</label>
@@ -54,10 +48,7 @@
                             <label for="descripcion" class="form-label">Descripción:</label>
                             <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
                         </div>
-                        <div class="mb-3">
-                            <label for="sesion" class="form-label">Sesiones:</label>
-                            <textarea class="form-control" id="sesion" name="sesion"></textarea>
-                        </div>
+            
                         <button type="submit" class="btn btn-primary">Crear Nueva Rutina</button>
                     </form>
                 </div>
@@ -73,60 +64,44 @@
     @endif
 
     @isset($rutinaid)
-    <div class="row">
-        <div class="col">
-            <strong>Numero de Sesiones</strong>
-            <label>{{ $rutinaid->sesion }}</label>
+        <div class="row">
+            <div class="col">
+                <strong>Nombre rutina:</strong>
+                <label>{{ $rutinaid->nombre }}</label>
+            </div>
         </div>
-    </div>
-    <br>
-    
-    <div class="row">
-    <div class="col">
-        
-    </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Nombre Ejercicio</th>
-                <th scope="col">Acción</th>
-                <th scope="col">Fecha</th>
-            </tr>
-        </thead>
-        
-        <tbody class="table-group-divider">
-       
-    <tr>
-        <td>Movimiendo de hombro</td>
-        <td>
-            <iframe width="120" height="80" src="" frameborder="0" allowfullscreen></iframe>
-        </td>
-        <td>15/06/2024</td>
-    </tr>
-   
-    <tr>
-        <td>Extension de espalda</td>
-        <td>
-            <iframe width="120" height="80" src="../../../public/storage/videos/" frameborder="0" allowfullscreen></iframe>
-        </td>
-        <td>16/06/2024</td>
-    </tr>
-   
-    <tr>
-        <td>Remo con Peso</td>
-        <td>
-            <iframe width="120" height="80" src="" frameborder="0" allowfullscreen></iframe>
-        </td>
-        <td>18/06/2024</td>
-    </tr>
-        </tbody>
-    </table>
-    <div class="col">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crearRutinaModal">Añadir Ejercicio</button>
-    </div>
-</div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre Ejercicio</th>
+                            <th scope="col">Acción</th>
+                            <th scope="col">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Aquí debes mostrar los ejercicios relacionados con la rutina -->
+                        @foreach($rutinaid->ejercicios as $ejercicio)
+                            <tr>
+                                <td>{{ $ejercicio->nombre }}</td>
+                                <td>
+                                    <iframe width="120" height="80" src="{{ $ejercicio->video_url }}" frameborder="0" allowfullscreen></iframe>
+                                </td>
+                                <td>{{ $ejercicio->fecha }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="col">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crearRutinaModal">Añadir Ejercicio</button>
+                </div>
+            </div>
+        </div>
     @endisset
-    @endif
+
 </div>
 
 <div class="modal fade" id="crearRutinaModal" tabindex="-1" aria-labelledby="crearRutinaModalLabel" aria-hidden="true">
@@ -148,7 +123,7 @@
                             <select class="form-select" id="rutina_id" name="rutina_id" required>
                                 <option value="">Seleccione una rutina</option>
                                 @foreach($rutinas as $rutina)
-                                    <option value="{{ $rutina->id }}">{{ $rutina->nombre }}</option>
+                                    <option value="{{ $rutina->id }}"> {{ $rutina->nombre }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -228,5 +203,50 @@ document.getElementById('addExercise').addEventListener('click', function() {
     }
 });
 </script>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const rutinaSelect = document.getElementById('rutina_id');
+            const rutinaDetalles = document.getElementById('rutina-detalles');
+            const rutinaNombre = document.getElementById('rutina-nombre');
+            const ejerciciosLista = document.getElementById('ejercicios-lista');
+
+            if (rutinaSelect) {
+                rutinaSelect.addEventListener('change', function() {
+                    const rutinaId = this.value;
+                    if (rutinaId) {
+                        // Construir la URL de la API con el ID seleccionado
+                        const apiUrl = `{{ url('/api/rutinas') }}/${rutinaId}`;
+
+                        fetch(apiUrl)
+                            .then(response => response.json())
+                            .then(data => {
+                                rutinaNombre.textContent = data.nombre;
+                                ejerciciosLista.innerHTML = '';
+                                data.ejercicios.forEach(ejercicio => {
+                                    const row = document.createElement('tr');
+                                    row.innerHTML = `
+                                        <td>${ejercicio.nombre}</td>
+                                        <td>
+                                            <iframe width="120" height="80" src="${ejercicio.video_url}" frameborder="0" allowfullscreen></iframe>
+                                        </td>
+                                        <td>${ejercicio.fecha}</td>
+                                    `;
+                                    ejerciciosLista.appendChild(row);
+                                });
+                                rutinaDetalles.style.display = 'block';
+                            })
+                            .catch(error => {
+                                console.error('Error fetching rutina:', error);
+                            });
+                    } else {
+                        rutinaDetalles.style.display = 'none';
+                    }
+                });
+            } else {
+                console.error('El elemento rutina_id no se encontró en el DOM.');
+            }
+        });
+    </script>
+
 
 @endsection

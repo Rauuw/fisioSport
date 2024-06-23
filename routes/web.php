@@ -36,6 +36,11 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/seleccionar_rutina/{rutina_id}/{paciente_id}', [App\Http\Controllers\RutinaController::class, 'select'])->name('seleccionar_rutina');
   Route::post('/rutina/add-exercise', [App\Http\Controllers\RutinaController::class, 'addExerciseToRoutine'])->name('rutina.addExercise');
 
+  Route::get('/rutinaejercicio', [App\Http\Controllers\RutinaEjercicioController::class, 'index'])->name('rutina_ejercicio');
+  Route::post('/rutina-create', [App\Http\Controllers\RutinaEjercicioController::class, 'createRutina'])->name('rutina_create');
+  Route::post('/asign-ejer-rutina', [App\Http\Controllers\RutinaEjercicioController::class, 'asignarEjercicioRutina'])->name('asign_ejercicio');
+  Route::get('/api/rutinas/{id}', [App\Http\Controllers\RutinaEjercicioController::class, 'obtenerRutina'])->name('obtener_rutina');
+
   // Route::get('/tracking', [App\Http\Controllers\TrackingController::class, 'trackArms'])->name('tracking');
 });
 Route::get('/prueba/{id}', [App\Http\Controllers\RutinaEjercicioController::class, 'getFisioByPaciente'])->name('prueba');
