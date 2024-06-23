@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Fisioterapeuta;
 use App\Models\Ejercicio;
-use App\Models\Fisioterapeuta;
 use App\Models\Paciente;
 use App\Models\Rutina;
 use App\Models\RutinaEjercicio;
@@ -94,4 +93,19 @@ class RutinaEjercicioController extends Controller
 
         return $fisio;
     }
+
+    public function saveCorrecto(Request $request) {
+        $noti = new NotificacionesController();
+        $id_paciente = $noti->getPacienteByUser(auth()->user()->id);
+        $segundos = intval($request->input('segundos'));
+        RutinaEjercicio::create([
+            'accion' => True,
+            'fecha' => now()->format('Y-m-d'),
+            'tiempo_ejercicio' => $segundos,
+            'cantidad_repeticiones' => 10,
+            'motivo' => 'Ejercicio correcto',
+            'paciente_id' => $id_paciente
+        ]);
+    }
+    
 }

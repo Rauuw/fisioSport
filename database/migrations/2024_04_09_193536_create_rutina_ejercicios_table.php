@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->boolean('accion');
             $table->date('fecha');
-            $table->time('tiempo_ejercicio')->nullable();
+            $table->integer('tiempo_ejercicio')->nullable();
             $table->integer('cantidad_repeticiones')->nullable();
             $table->string('motivo')->nullable();
 
