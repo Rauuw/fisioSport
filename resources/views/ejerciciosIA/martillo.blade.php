@@ -1,22 +1,22 @@
 @extends('layouts.plantillabase')
 
 @section('title', 'Home')
-@section('h-title', 'Tracking')
+@section('h-title', 'Sesión de ejercicios')
 @section('card-title', '')
 
 @section('content')
-    <h1>PASOS:
-    </h1>
-    <h3>
-        <br>
-        1: Vea el vídeo de referencia para aprender el movimiento a realizar
-        <br>
-        2: Memorice el movimiento
-        <br>
-        3: Dele click a empezar para comenzar el ejercicio
-        <br>
-        4: Cuando cumpla las repeticiones en la pantalla le saldrá "finalizado"
-    </h3>
+    <h3 class="display-10">Pasos a seguir antes de empezar:</h3>
+    <div class="lead">
+        <ul class="list-unstyled">
+            <li><strong>1:</strong> Vea el vídeo de referencia para aprender el movimiento a realizar.</li>
+            <li><strong>2:</strong> Memorice el movimiento.</li>
+            <li><strong>3:</strong> Haga click en empezar para comenzar el ejercicio.</li>
+            <li><strong>4:</strong> Cuando cumpla las repeticiones en la pantalla le saldrá "finalizado".</li>
+            <li><strong>5:</strong> Para terminar haga click en "Sí" para guardar sus datos.</li>
+            <li style="font-size: small;"><strong>Nota:</strong> Si no pudo terminar, haga click en "No", describa el motivo
+                y las repeticiones ejecutadas correctamente.</li>
+        </ul>
+    </div>
     <br>
     <!-- Mostrar el video de YouTube -->
     <div class="youtube-video">
@@ -24,42 +24,52 @@
             allowfullscreen></iframe>
     </div>
 
-    <br>
-
     <button onclick="startVideo()" class="btn btn-primary">Empezar</button>
+    <div class="ml-2">
+        <span id="timer" class="badge badge-primary"></span>
+    </div>
+    
     <img id="video" src="" width="640" height="480" style="display: none;">
 
     <div>¿Finalizó las repeticiones con exito?</div>
     <button onclick="" class="btn btn-primary">Sí</button>
     <button onclick="showForm()" class="btn btn-primary">No</button>
-    <div id="form-container" style="display: none;">
-        <h3>Retroalimentación</h3>
-        <form action="/ejerciciosIA/martillo/fail" method="POST">
+    <div id="form-container" style="display: none;" class="form-container card mb-3">
+        <h3 class="card-header">Retroalimentación</h3>
+
+        <form action="/ejerciciosIA/martillo/fail" method="POST" class="form-row">
             @csrf
             <div class="form-group col-md-6">
-                <label for="repeticiones">Cuantas repeticiones realizaste:</label>
+                <label for="repeticiones" class="form-label">Cuantas repeticiones realizaste:</label>
                 <input type="number" class="form-control" id="repeticiones" name="repeticiones" required>
             </div>
             <div class="form-group col-md-6">
-                <label for="motivo">Motivo:</label>
+                <label for="motivo" class="form-label">Motivo:</label>
                 <textarea class="form-control" id="motivo" name="motivo" required></textarea>
             </div>
             <br>
             <button type="submit" class="btn btn-primary">Enviar</button>
+
         </form>
+
     </div>
-    
+
     <script>
-        function showForm() {
-            var formContainer = document.getElementById('form-container');
-            formContainer.style.display = 'block';
-        }
-    </script>
-    <script>
+        var timer;
+        var seconds = 10;
         function startVideo() {
             var videoFeed = document.getElementById('video');
             videoFeed.style.display = 'block';
             videoFeed.src = 'http://localhost:5000/calentamiento';
+            timer = setInterval(function() {
+                seconds--;
+                if (seconds > 0) {
+                    document.getElementById('timer').innerHTML = seconds + " segundos";
+                } else {
+                    clearInterval(timer);
+                    document.getElementById('timer').innerHTML = "";
+                }
+            }, 1000);
         }
     </script>
 
@@ -70,3 +80,4 @@
     </div> --}}
 
 @endsection
+

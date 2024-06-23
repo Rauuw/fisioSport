@@ -2,9 +2,7 @@
 @extends('layouts.plantillabase')
 
 @section('title','Home')
-@section('h-title','Blank Page')
-@section('card-title','Empty card')
-
+@section('h-title','Bievenido')
 
 @section('content')
     @if (session('status'))
@@ -13,7 +11,8 @@
         </div>
     @endif
 
-    {{ __('You are logged in!') }}
+    {{ __('You are logged in,') }}
+    {{ auth()->user()->name }}!
 @endsection
 @endhasanyrole
 @hasanyrole('paciente')
