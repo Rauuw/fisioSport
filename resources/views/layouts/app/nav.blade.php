@@ -27,12 +27,12 @@
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ route('ver_notificaciones') }}">Ver notificaciones</a></li>
                 </ul>
             </li>
-         <li class="sidebar-item"><a href="{{ route('listar_ejercicios') }}" class="sidebar-link"><i class="fa-solid fa-chart-simple"></i>Ejercicios</a></li>
+         <li class="sidebar-item"><a href="{{ route('listar_ejercicios') }}" class="sidebar-link"><i class="fa-solid fa-chart-simple"></i>Lista Ejercicios</a></li>
 
             <li class="sidebar-item">
                 <a data-bs-target="#ejercicios" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
                     <i class="fa-solid fa-chart-simple"></i>
-                    <span class="align-middle">Ejercicios</span>
+                    <span class="align-middle">Ejercicios </span>
                 </a>
                 <ul id="ejercicios" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ route('tracking') }}">Realizar ejercicios</a></li>
@@ -61,7 +61,7 @@
                 </ul>
             </li> -->
 
-            <li class="sidebar-header">
+            <!-- <li class="sidebar-header">
                 Plugins &amp; Addons
             </li>
             <li class="sidebar-item">
@@ -103,7 +103,7 @@
                     <li class="sidebar-item"><a class="sidebar-link" href="#">Chart.js</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="#">ApexCharts <span class="sidebar-badge badge bg-primary">Pro</span></a></li>
                 </ul>
-            </li>
+            </li> -->
         </ul>
     </div>
 </nav>

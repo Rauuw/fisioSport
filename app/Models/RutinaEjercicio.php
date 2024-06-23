@@ -12,16 +12,19 @@ class RutinaEjercicio extends Model
     protected $table = 'rutina_ejercicio';
 
     protected $fillable = [
-        'accion', 'fecha',
+        'accion', 'fecha', 'tiempo_ejercicio', 'cantidad_repeticiones', 'motivo'
     ];
 
     public function rutina()
-    {
-        return $this->belongsToMany(rutina::class, 'rutina_ejercicio', 'rutina_id', 'ejercicio_id');
-    }
+{
+    return $this->belongsToMany(Rutina::class, 'rutina_ejercicio', 'ejercicio_id', 'rutina_id')
+                ->withPivot('accion', 'fecha', 'paciente_id');
+}
 
     public function ejercicio()
     {
-        return $this->belongsToMany(Ejercicio::class, 'rutina_ejercicio','ejercicio_id', 'rutina_id');
+        return $this->belongsToMany(Ejercicio::class, 'rutina_ejercicio', 'rutina_id', 'ejercicio_id')
+                    ->withPivot('accion', 'fecha', 'paciente_id');
     }
+    
 }

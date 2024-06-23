@@ -15,6 +15,9 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->boolean('accion');
             $table->date('fecha');
+            $table->time('tiempo_ejercicio')->nullable();
+            $table->integer('cantidad_repeticiones')->nullable();
+            $table->string('motivo')->nullable();
 
             $table->foreignId('rutina_id')->nullable()
             ->constrained('rutinas')
@@ -25,6 +28,8 @@ return new class extends Migration
             ->constrained('ejercicio')
             ->cascadeOnUpdate()
             ->nullOnDelete();
+            $table->foreignId('paciente_id')->references('id')->on('pacientes')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

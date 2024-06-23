@@ -5,11 +5,13 @@
 @section('card-title','')
 
 @section('content')
-<div class="container-bottom-3">
+<div class="container">
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 80%;height: 50%;font-size: 100px;padding: 10px 20px;">+</button>
-        </div>
+        <!-- Botón fijo en la parte superior -->
+         <div class="col">
+            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 80%; height: 50%; font-size: 100px; padding: 10px 20px;">+</button>
+         </div>
+        
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -31,6 +33,10 @@
                                 <input type="text" class="form-control" id="duracion" name="duracion" required>
                             </div>
                             <div class="mb-3">
+                                <label for="repeticiones" class="form-label">Repeticiones</label>
+                                <input class="form-control" id="repeticiones" name="repeticiones" required></input>
+                            </div>
+                            <div class="mb-3">
                                 <label for="descripcion" class="form-label">Descripción</label>
                                 <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
                             </div>
@@ -48,23 +54,18 @@
             </div>
         </div>
 
-
+        <!-- Ejercicios -->
         @foreach($ejercicios as $ejercicio)
         <div class="col">
             <div class="card">
-                <!-- Aquí se muestra el video -->
                 <video controls>
                     <source src="{{ asset('storage/'.$ejercicio->url_video_demostrativo) }}" type="video/mp4">
                 </video>
                 <div class="card-body">
                     <div class="card-body">
-                        <!-- Nombre del ejercicio -->
                         <div class="col sm-2">
                         <h5 class="card-title">{{ $ejercicio->nombre }}</h5>
                         </div>
-                        
-                        
-                        <!-- Duración y descripción del ejercicio -->
                         <p class="card-text">Duración: {{ $ejercicio->duracion }}</p>
                         <p class="card-text">Descripción: {{ $ejercicio->descripcion }}</p>
                     </div>
@@ -77,16 +78,10 @@
                             </svg></button>
                         </form>
                         </div>
-                   <!--  <form action="{{ route('ejercicio.edit', $ejercicio->id) }}" method="GET">
-                        @csrf
-                        <button type="submit" class="btn btn-primary">Editar</button>
-                    </form> -->
-
-                    
                 </div>
             </div>
-            @endforeach
-
         </div>
+        @endforeach
     </div>
+</div>
     @endsection
