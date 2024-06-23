@@ -24,20 +24,27 @@
             allowfullscreen></iframe>
     </div>
 
-    <button onclick="startVideo()" class="btn btn-primary">Empezar</button>
-    <div class="ml-2">
-        <span id="timer" class="badge badge-primary"></span>
-    </div>
-    
+    <button onclick="startVideo()" class="btn btn-success">Empezar</button>
+
     <img id="video" src="" width="640" height="480" style="display: none;">
 
-    <div>¿Finalizó las repeticiones con exito?</div>
-    <button onclick="" class="btn btn-primary">Sí</button>
+    <!-- Agregar el cronómetro -->
+    <div id="countdown" style="font-size: 2rem; margin-top: 20px;"></div>
+
+    <div>¿Finalizó las repeticiones con éxito?</div>
+    
+    <!-- Formulario para enviar los segundos -->
+    <form id="saveCorrectoForm" action="{{ route('saveCorrecto')}}" method="POST" style="display: none;">
+        @csrf
+        <input type="hidden" name="segundos" id="segundosInput">
+    </form>
+    
+    <button onclick="saveCorrecto()" class="btn btn-primary">Sí</button>
     <button onclick="showForm()" class="btn btn-primary">No</button>
     <div id="form-container" style="display: none;" class="form-container card mb-3">
         <h3 class="card-header">Retroalimentación</h3>
 
-        <form action="/ejerciciosIA/martillo/fail" method="POST" class="form-row">
+        <form action="" method="POST" class="form-row">
             @csrf
             <div class="form-group col-md-6">
                 <label for="repeticiones" class="form-label">Cuantas repeticiones realizaste:</label>
@@ -56,28 +63,38 @@
 
     <script>
         var timer;
-        var seconds = 10;
+        var seconds = 0;
+        var countdownElement = document.getElementById('countdown');
+
         function startVideo() {
             var videoFeed = document.getElementById('video');
             videoFeed.style.display = 'block';
             videoFeed.src = 'http://localhost:5000/calentamiento';
-            timer = setInterval(function() {
-                seconds--;
-                if (seconds > 0) {
-                    document.getElementById('timer').innerHTML = seconds + " segundos";
-                } else {
-                    clearInterval(timer);
-                    document.getElementById('timer').innerHTML = "";
-                }
-            }, 1000);
+
+            // Iniciar el cronómetro después de 15 segundos
+            countdownElement.innerText = "Empezando...";
+            setTimeout(startTimer, 15000);
+        }
+
+        function startTimer() {
+            seconds = 0; // Reiniciar los segundos
+            countdownElement.innerText = seconds + " segundos";
+            timer = setInterval(updateTimer, 1000);
+        }
+
+        function updateTimer() {
+            seconds++;
+            countdownElement.innerText = seconds + " segundos";
+        }
+
+        function saveCorrecto() {
+            document.getElementById('segundosInput').value = seconds;
+            document.getElementById('saveCorrectoForm').submit();
+        }
+
+        function showForm() {
+            document.getElementById('form-container').style.display = 'block';
         }
     </script>
 
-
-    <!-- Mostrar la salida del código Python en la página -->
-    {{-- <div id="output">
-        {{ $output ?? '' }}
-    </div> --}}
-
 @endsection
-
