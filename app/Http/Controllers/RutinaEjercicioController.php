@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fisioterapeuta;
 use App\Models\Ejercicio;
 use App\Models\Fisioterapeuta;
 use App\Models\Paciente;
@@ -69,7 +70,10 @@ class RutinaEjercicioController extends Controller
 
     public function getAllPacientesByFisio($id)
     {
-        $pacientes = Paciente::where('fisioterapeuta_id', $id)
+        $id_fisio = Fisioterapeuta::where('user_id', $id)
+            ->value('id');
+
+        $pacientes = Paciente::where('fisioterapeuta_id', $id_fisio)
             ->join('users', 'users.id', '=', 'pacientes.user_id')
             ->select('pacientes.id', 'pacientes.user_id', 'users.name', 'users.lastname')
             ->get();
@@ -78,8 +82,16 @@ class RutinaEjercicioController extends Controller
 
     public function getFisioByPaciente($id)
     {
-        $fisio = User::where('id', $id)
+        $fisio = Paciente::where('id', $id)
             ->value('fisioterapeuta_id');
+        return $fisio;
+    }
+    
+    public function getFisioByPacienteUser($id)
+    {
+        $fisio = Paciente::where('user_id', $id)
+            ->value('fisioterapeuta_id');
+
         return $fisio;
     }
 }
