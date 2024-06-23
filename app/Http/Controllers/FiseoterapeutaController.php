@@ -25,7 +25,7 @@ class FiseoterapeutaController extends Controller
 
     public function store(Request $request)
     {
-     }
+    }
     public function crearPaciente(Request $request){
         $user = User::create([
             'name' => $request['name'],
@@ -37,7 +37,7 @@ class FiseoterapeutaController extends Controller
     
         $userId = $user->id;
         $fisio = Auth::user();
-       
+
         if ($fisio) {
             
             $fisioterapeuta = Fisioterapeuta::where('user_id', Auth::id())->first();
@@ -56,8 +56,11 @@ class FiseoterapeutaController extends Controller
         ->where('pacientes.fisioterapeuta_id', $fisioterapeuta->id)
         ->select('pacientes.*', 'users.name')
         ->get();
-    
-      return view('fisioterapeuta.listar_pacientes', compact('user','pacientes'));
+        return redirect()->route('listar_pacientes')->with([
+            'success' => 'Paciente Registrado exitosamente.',
+            'user' => $user,
+            'pacientes' => $pacientes,
+        ]); 
     }
 
     public function edit($id)

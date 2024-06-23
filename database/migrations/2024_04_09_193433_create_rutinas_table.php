@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('rutinas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
-            $table->string('descripcion');
-            $table->date('fecha_creacion');
-            $table->date('fecha_modificacion');
-            $table->integer('sesion');
+            $table->string('descripcion')->nullable();
+            $table->date('fecha_creacion')->nullable();
+            $table->date('fecha_modificacion')->nullable();
+            $table->integer('sesion')->nullable();
 
             $table->foreignId('fisioterapeuta_id')->nullable()
             ->constrained('fisioterapeutas')

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ejercicio;
+use App\Models\Fisioterapeuta;
 use App\Models\Paciente;
 
 use Illuminate\Http\Request;
 use App\Models\Rutina;
 use App\Models\RutinaEjercicio;
+use Illuminate\Support\Facades\Auth;
 use Psy\Readline\Hoa\Console;
 use Illuminate\Support\Facades\DB;
 class RutinaController extends Controller
@@ -18,6 +20,7 @@ class RutinaController extends Controller
         ->where('pacientes.user_id', $id)
         ->select('pacientes.*', 'users.*')
         ->get();
+
         $ejercicios = Ejercicio::all();
         $rutinas = Rutina::all();
 
@@ -30,7 +33,6 @@ class RutinaController extends Controller
         ->where('rutina_ejercicio.paciente_id', $pacientesEjercicioId[0]->id)
         ->select('ejercicio.*')
         ->get();
-
         return view('rutina.index', 
         ['pacientes' => $pacientes,
         'ejercicios'=>$ejercicios,
@@ -47,13 +49,14 @@ class RutinaController extends Controller
             'descripcion' => 'required|string',
             'sesion' => 'required|integer',
     ]);
+    $fisioterapeuta = Fisioterapeuta::where('user_id', Auth::id())->first();
 
         // Crear una nueva rutina
         $rutina = new Rutina();
         $rutina->nombre = $request->input('nombre');
         $rutina->descripcion = $request->input('descripcion');
         $rutina->sesion = $request->input('sesion');
-        $rutina->fisioterapeuta_id = auth()->id(); // Asignar el ID del fisioterapeuta autenticado, puedes ajustar esto según tu lógica de autenticación
+        $rutina->fisioterapeuta_id = $fisioterapeuta->id; // Asignar el ID del fisioterapeuta autenticado, puedes ajustar esto según tu lógica de autenticación
         $rutina->fecha_creacion =  now();
         $rutina->fecha_modificacion = "10/10/2010";
         $rutina->save();

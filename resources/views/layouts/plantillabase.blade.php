@@ -27,6 +27,7 @@
     @yield('css')
 </head>
 <body>
+
     <div class="wrapper">
     @if(auth()->user()->hasRole('paciente'))
                     @include('layouts.app.navPaciente')
