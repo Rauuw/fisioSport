@@ -19,7 +19,7 @@
                 <tr>
                     <td style="width: 25%;">{{ $paciente->name }}</td>
                     <td style="width: 75%;">
-                        <a href="{{ route('ver_mensajes', $paciente->id) }}" class="btn btn-primary">Ver notificaciones</a>
+                        <a href="{{ route('ver_mensajes', ['id' => $paciente->id]) }}" class="btn btn-primary">Ver notificaciones</a>
                     </td>
                 </tr>
             @endforeach

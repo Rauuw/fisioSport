@@ -34,8 +34,22 @@
                 </ul>
             </li>
 
+            
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('crear_notificacion_paciente') }}">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span class="align-middle">Enviar mensaje</span>
+                </a>
+            </li>
 
             <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('ver_mensajes_paciente', ['id' => auth()->user()->id]) }}">
+                    <i class="fa-solid fa-comment-dots"></i>
+                    <span class="align-middle">Ver mensajes</span>
+                </a>
+            </li>
+            
+            {{-- <li class="sidebar-item">
                 <a data-bs-target="#notifications" data-bs-toggle="collapse" class="sidebar-link collapsed"
                     aria-expanded="false">
                     <i class="fa-solid fa-chart-simple"></i>
@@ -48,7 +62,7 @@
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ route('ver_notificaciones') }}">Ver
                             notificaciones</a></li>
                 </ul>
-            </li>
+            </li> --}}
 
             <!--   <li class="sidebar-header">
                 Plugins &amp; Addons
