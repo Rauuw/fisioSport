@@ -156,7 +156,7 @@
                     <td>
                         <div class="d-flex align-items-center">
                             <div class="img-container">
-                                <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+                                <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" width="25vw" height="28vh">
                             </div>
                             <div class="ps-3">
                                 <div class="fw-600 pb-1">{{ $paciente->user->email }}</div>

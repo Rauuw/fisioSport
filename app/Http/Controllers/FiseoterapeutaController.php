@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fisioterapeuta;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,10 @@ class FiseoterapeutaController extends Controller
 {
     public function index()
     {
+        $fisioterapeuta = Fisioterapeuta::where('user_id', Auth::id())->first();
+
         $pacientes = \App\Models\Paciente::join('users', 'users.id', '=', 'pacientes.user_id')
+            ->where('pacientes.fisioterapeuta_id', $fisioterapeuta->id)
             ->select('pacientes.*', 'users.name')
             ->get();
 
@@ -33,23 +37,25 @@ class FiseoterapeutaController extends Controller
     
         $userId = $user->id;
         $fisio = Auth::user();
-        
+       
         if ($fisio) {
-         $pacientes = Paciente::create([
+            
+            $fisioterapeuta = Fisioterapeuta::where('user_id', Auth::id())->first();
+            $pacientes = Paciente::create([
                 'fecha_nacimiento' => $request['fecha_nacimiento'],
                 'genero' => $request['genero'],
                 'telefono' => $request['telefono'],
                 'user_id' => $userId,
-                'fisioterapeuta_id' =>  Auth::id(),
+                'fisioterapeuta_id' =>   $fisioterapeuta->id,
             ]);
         }
 
         $user->assignRole('paciente');
 
         $pacientes = \App\Models\Paciente::join('users', 'users.id', '=', 'pacientes.user_id')
+        ->where('pacientes.fisioterapeuta_id', $fisioterapeuta->id)
         ->select('pacientes.*', 'users.name')
         ->get();
-
     
       return view('fisioterapeuta.listar_pacientes', compact('user','pacientes'));
     }

@@ -22,5 +22,8 @@
         "simplebar": "5.3.8",
         "vite": "^3.0.0",
         "vite-plugin-static-copy": "^0.9.0"
+    },
+    "dependencies": {
+        "boxicons": "^2.1.4"
     }
 }

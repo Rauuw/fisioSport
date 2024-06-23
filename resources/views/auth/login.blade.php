@@ -4,76 +4,45 @@
 login-page
 @endsection
 
-@section('boxstyle')
-login-box
-@endsection
 
 @section('content')
-    <!-- /.login-logo -->
-        <div class="card card-outline card-primary">
-            <div class="card-header text-center">
-                <a href="{{ route('login') }}" class="h1"><b>FisioSport</b></a>
+<div>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div>
+            <div class="card d-flex mx-auto my-5">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12 c1 p-5">
+                        <div class="row mb-5 m-3"> </div> <img src="https://www.trakphysio.com/wp-content/uploads/sites/612/2023/03/trak-silver.png" width="250vw" height="280vh" class="mx-auto d-flex" alt="Teacher">
+                        <div class="row justify-content-center">
+                            <div class="w-75 mx-md-5 mx-1 mx-sm-2 mb-5 mt-4 px-sm-5 px-md-2 px-xl-1 px-2">
+                                <h1 class="wlcm">Bienvenido a FisioSport</h1> <span class="sp1"> <span class="px-3 bg-danger rounded-pill"></span> <span class="ml-2 px-1 rounded-circle"></span> <span class="ml-2 px-1 rounded-circle"></span> </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12 c2 px-5 pt-5">
+                        <form method="POST" action="{{ route('login') }}" autocomplete="off">
+                         @csrf
+                            <div class="d-flex"> 
+                                <h3 class="font-weight-bold">Log in</h3>
+                            </div> 
+                            <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="{{ __('Email') }}" required autofocus>
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="{{ __('Password') }}" required autocomplete="current-password">
+
+                            <button type="submit" class="text-white text-weight-bold bt">{{ __('Login') }}</button>
+
+                            <h5 class="ac" id="register">                            
+                                <a href="{{ route('register') }}" class="text-center">Registrar</a>
+                            </h5>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <p class="login-box-msg">Acceder para iniciar sesión</p>
-
-                <form method="POST" action="{{ route('login') }}" autocomplete="off">
-                    @csrf
-                    <div class="row input-group mb-3">
-                        <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="{{ __('Email') }}" required autofocus>
-                            
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
-                            </div>
-                        </div>
-
-                        @error('username')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="row input-group mb-3">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="{{ __('Password') }}" required autocomplete="current-password">
-                                                
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
-
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                <label for="remember">
-                                    {{ __('Remember Me') }}
-                                </label>
-                            </div>
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-4"></div>
-                        <!-- /.col -->
-                    </div>
-                    <div class="social-auth-links text-center mt-2 mb-3">
-                        <button type="submit" class="btn btn-block btn-primary"><strong>{{ __('Login') }}  <i class="fa-solid fa-right-to-bracket"></i></strong></button>
-                        <p class="mb-0">
-                            <br>
-                            <a href="{{ route('register') }}" class="text-center">Registrar nuevo usuario</a>
-                        </p>
-                    </div>
-
-                </form>
-                
-            </div>
-            <!-- /.card-body -->
         </div>
+    </div>
+</div>
+
+</div>
+
     <!-- /.card -->
 @endsection
