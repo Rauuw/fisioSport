@@ -5,68 +5,100 @@
 @section('card-title', '')
 
 @section('content')
-    <h1>PASOS:
-    </h1>
-    <h3>
-        <br>
-        1: Vea el vídeo de referencia para aprender el movimiento a realizar
-        <br>
-        2: Memorice el movimiento
-        <br>
-        3: Dele click a empezar para comenzar el ejercicio
-        <br>
-        4: Cuando cumpla las repeticiones en la pantalla le saldrá "finalizado"
-    </h3>
-    <br>
+<h3 class="display-10">Pasos a seguir antes de empezar:</h3>
+<div class="lead">
+    <ul class="list-unstyled">
+        <li><strong>1:</strong> Vea el vídeo de referencia para aprender el movimiento a realizar.</li>
+        <li><strong>2:</strong> Memorice el movimiento.</li>
+        <li><strong>3:</strong> Haga click en empezar para comenzar el ejercicio.</li>
+        <li><strong>4:</strong> Cuando cumpla las repeticiones en la pantalla le saldrá "finalizado".</li>
+        <li><strong>5:</strong> Para terminar haga click en "Sí" para guardar sus datos.</li>
+        <li style="font-size: small;"><strong>Nota:</strong> Si no pudo terminar, haga click en "No", describa el motivo
+            y las repeticiones ejecutadas correctamente.</li>
+    </ul>
+</div>
+<br>
     <!-- Mostrar el video de YouTube -->
     <div class="youtube-video">
         <iframe width="350" height="200" src="https://www.youtube.com/embed/j99intoPKGE" frameborder="0"
             allowfullscreen></iframe>
     </div>
 
-    <br>
-
-    <button onclick="startVideo()" class="btn btn-primary">Empezar</button>
+    <button onclick="startVideo()" class="btn btn-success">Empezar</button>
     <img id="video" src="" width="640" height="480" style="display: none;">
 
-    <div>¿Finalizó las repeticiones con exito?</div>
-    <button onclick="" class="btn btn-primary">Sí</button>
-    <button onclick="showForm()" class="btn btn-primary">No</button>
-    <div id="form-container" style="display: none;">
-        <h3>Retroalimentación</h3>
-        <form action="/ejerciciosIA/martillo/fail" method="POST">
+    <!-- Agregar el cronómetro -->
+    <div id="countdown" style="font-size: 2rem; margin-top: 20px;"></div>
+
+    <div>¿Finalizó las repeticiones con éxito?</div>
+    <form id="saveCorrectoForm" action="{{ route('saveCorrecto') }}" method="POST" style="display: none;">
+        @csrf
+        <input type="hidden" name="segundos" id="segundosInput">
+    </form>
+
+    <button onclick="saveCorrecto()" class="btn btn-success">Sí</button>
+
+    <!-- Mostrar formulario para enviar los datos cuando no se completaron correctamente -->
+    <button onclick="showForm()" class="btn btn-danger">No</button>
+    <div id="form-container" style="display: none;" class="form-container card mb-3">
+        <h3 class="card-header">Retroalimentación</h3>
+
+        <form id="saveFailForm" action="{{ route('saveIncorrecto') }}" method="POST" class="form-row">
             @csrf
             <div class="form-group col-md-6">
-                <label for="repeticiones">Cuantas repeticiones realizaste:</label>
+                <label for="repeticiones" class="form-label">¿Cuántas repeticiones realizaste?</label>
                 <input type="number" class="form-control" id="repeticiones" name="repeticiones" required>
             </div>
             <div class="form-group col-md-6">
-                <label for="motivo">Motivo:</label>
+                <label for="motivo" class="form-label">Motivo:</label>
                 <textarea class="form-control" id="motivo" name="motivo" required></textarea>
             </div>
+            <input type="hidden" name="segundos" id="segunInput">
             <br>
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="submit" class="btn btn-success">Enviar</button>
         </form>
     </div>
-    
+
     <script>
-        function showForm() {
-            var formContainer = document.getElementById('form-container');
-            formContainer.style.display = 'block';
-        }
-    </script>
-    <script>
+        var timer;
+        var seconds = 0;
+        var countdownElement = document.getElementById('countdown');
+
         function startVideo() {
             var videoFeed = document.getElementById('video');
             videoFeed.style.display = 'block';
             videoFeed.src = 'http://localhost:5000/lateral_espalda';
+
+            // Iniciar el cronómetro después de 15 segundos
+            countdownElement.innerText = "Empezando...";
+            setTimeout(startTimer, 15000);
+        }
+
+        function startTimer() {
+            seconds = 0; // Reiniciar los segundos
+            countdownElement.innerText = seconds + " segundos";
+            timer = setInterval(updateTimer, 1000);
+        }
+
+        function updateTimer() {
+            seconds++;
+            countdownElement.innerText = seconds + " segundos";
+        }
+
+        function saveCorrecto() {
+            document.getElementById('segundosInput').value = seconds;
+            document.getElementById('saveCorrectoForm').submit();
+        }
+
+        function saveFail() {
+            // document.getElementById('segunInput').value = seconds;
+            // document.getElementById('saveFailForm').submit();
+        }
+
+        function showForm() {
+            document.getElementById('form-container').style.display = 'block';
+            document.getElementById('segunInput').value = seconds;
         }
     </script>
-
-
-    <!-- Mostrar la salida del código Python en la página -->
-    {{-- <div id="output">
-        {{ $output ?? '' }}
-    </div> --}}
 
 @endsection
