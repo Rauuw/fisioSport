@@ -28,16 +28,29 @@ class RutinaController extends Controller
         ->where('pacientes.user_id', $id)
         ->select('pacientes.id')
         ->get();
-        
-        $ejerciciospaciente = Ejercicio::join('rutina_ejercicio', 'ejercicio.id', '=', 'rutina_ejercicio.ejercicio_id')
-        ->where('rutina_ejercicio.paciente_id', $pacientesEjercicioId[0]->id)
-        ->select('ejercicio.*')
-        ->get();
+
+
+        $pacientesEjercicios = RutinaEjercicio::where('paciente_id',$pacientesEjercicioId[0]->id)->get();
+        $rutinaId = null;
+        $rutinasPaciente = collect();
+        if($pacientesEjercicios->isNotEmpty()){
+            $rutinaId = Rutina::find($pacientesEjercicios[0]->rutina_id);
+
+            $rutinasPaciente = collect();
+            foreach ($pacientesEjercicios as $ejercicio) {
+                $eje = Ejercicio::find($ejercicio->ejercicio_id);
+                if ( $eje) {
+                    $rutina = $eje; // Agregar el ejercicio como una propiedad de la rutina
+                    $rutinasPaciente->push($rutina);
+                }
+            }
+        }
         return view('rutina.index', 
         ['pacientes' => $pacientes,
         'ejercicios'=>$ejercicios,
         'rutinas' => $rutinas, 
-        'ejerciciospaciente' => $ejerciciospaciente
+        'rutinaId' => $rutinaId,
+        'rutinasPaciente' => $rutinasPaciente
     ]);
     }
 
@@ -64,8 +77,32 @@ class RutinaController extends Controller
         return redirect()->back()->with('success', 'Rutina creada exitosamente.');
 
     }
-
-    public function select($rutina_id, $paciente_id)
+    public function select(Request $request, $paciente_id)
+    {  
+        $request->validate([
+            'rutina_id' => 'required|integer',
+            'sesion' => 'required|integer',
+        ]);
+        $rutina = Rutina::findOrFail($request->input('rutina_id'));
+        
+        // Actualizar la rutina con los datos enviados
+        $rutina->sesion = $request->input('sesion');
+        $rutina->save();
+        // Aquí puedes realizar otras operaciones si es necesario, como obtener datos adicionales
+        $pacientes = Paciente::join('users', 'users.id', '=', 'pacientes.user_id')
+        ->where('pacientes.user_id', $paciente_id)
+        ->select('pacientes.*')
+        ->get();
+        $rutinaEjercicios = RutinaEjercicio::where('rutina_id', $rutina->id)->get();
+    
+        foreach ($rutinaEjercicios as $rutinaEjercicio) {
+            $rutinaEjercicio->paciente_id = $pacientes[0]->id;
+            $rutinaEjercicio->save();
+        }
+        // Redirigir de vuelta con un mensaje de éxito
+        return redirect()->back()->with('success', 'Rutina actualizada exitosamente.');
+    }
+  /*   public function select($rutina_id, $paciente_id)
     { 
         $rutinaid = Rutina::findOrFail($rutina_id); 
         $pacientes = Paciente::join('users', 'users.id', '=', 'pacientes.user_id')
@@ -77,7 +114,7 @@ class RutinaController extends Controller
 
         return view('rutina.index', ['rutinaid' => $rutinaid, 'pacientes' => $pacientes,'ejercicios'=>$ejercicios,'rutinas' => $rutinas]);
     }
-
+ */
 
 
     public function addExerciseToRoutine(Request $request)

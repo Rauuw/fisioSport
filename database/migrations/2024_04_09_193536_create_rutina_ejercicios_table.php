@@ -28,7 +28,7 @@ return new class extends Migration
             ->constrained('ejercicio')
             ->cascadeOnUpdate()
             ->nullOnDelete();
-            $table->foreignId('paciente_id')->references('id')->on('pacientes')->onDelete('cascade');
+            $table->foreignId('paciente_id')->nullable()->references('id')->on('pacientes')->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -63,11 +63,25 @@
                 <ul class="menu-links">
                     
                    <li class="nav-link">
-                        <a href="">
+                        <a href="{{ route('paciente_rutina') }}">
                             <i class='bx bx-dumbbell icon'></i>
                             <span class="text nav-text">Mis Rutinas</span>
                         </a>
                     </li>
+                    <li class="nav-link">
+                    <a href="#" class="toggle-link" data-target="#ejercicios">
+                        <i class='bx bx-run icon'></i>
+                        <span class="text nav-text">Ejercicios</span>
+                    </a>
+                    <ul id="ejercicios" class="sub-menu">
+                        <li class="nav-link">
+                            <a href="{{ route('tracking') }}">
+                                <i class='bx bx-right-arrow-alt icon'></i>
+                                <span class="text nav-text">Realizar ejercicios</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
                 </ul>
             </div>

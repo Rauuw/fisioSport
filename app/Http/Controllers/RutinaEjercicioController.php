@@ -10,6 +10,7 @@ use App\Models\RutinaEjercicio;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class RutinaEjercicioController extends Controller
 {
@@ -47,11 +48,21 @@ class RutinaEjercicioController extends Controller
         return redirect()->back()->with('success', 'Rutina creada exitosamente.');
 
     }
-    public function obtenerRutina($id)
-        {
-            $rutina = Rutina::with('ejercicios')->findOrFail($id);
-            return response()->json($rutina);
-        }
+
+    public function select($rutina_id)
+    { 
+        $rutinaid = Rutina::findOrFail($rutina_id); 
+        $rutinas = Rutina::all();  // O la lógica necesaria para obtener las rutinas
+        $ejercicios = Ejercicio::all();  // O la lógica necesaria para obtener los ejercicios
+        $ejercicios_rutina = DB::table('rutina_ejercicio')
+        ->join('ejercicio', 'rutina_ejercicio.ejercicio_id', '=', 'ejercicio.id')
+        ->select('ejercicio.nombre', 'ejercicio.url_video_demostrativo', 'rutina_ejercicio.fecha')
+        ->where('rutina_ejercicio.rutina_id', $rutina_id)
+        ->get();
+        return view('rutina_ejercicio.lista-rutina-ejercicio', compact('rutinaid', 'rutinas', 'ejercicios', 'ejercicios_rutina'))->with('success', 'Rutina seleccionada exitosamente.');
+    }
+
+    
     public function asignarEjercicioRutina(Request $request)
     {
         $request->validate([
@@ -62,6 +73,9 @@ class RutinaEjercicioController extends Controller
          $rutinaEjercicio = new RutinaEjercicio();
             $rutinaEjercicio->rutina_id =$request->input('rutina_id');
             $rutinaEjercicio->ejercicio_id =$request->input('ejercicio_id');
+            $rutinaEjercicio->accion = false;
+            $rutinaEjercicio->fecha =now();
+          
             $rutinaEjercicio->save();
 
             return redirect()->back()->with(['success' => 'Ejercicio añadido a la rutina exitosamente.']);
