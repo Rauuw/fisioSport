@@ -69,7 +69,7 @@
         function startVideo() {
             var videoFeed = document.getElementById('video');
             videoFeed.style.display = 'block';
-            videoFeed.src = 'http://localhost:5000/entrelazadas';
+            videoFeed.src = 'https://5b85-189-28-75-192.ngrok-free.app/entrelazadas';
 
             // Iniciar el cronómetro después de 15 segundos
             countdownElement.innerText = "Empezando...";

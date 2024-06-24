@@ -67,7 +67,7 @@
         function startVideo() {
             var videoFeed = document.getElementById('video');
             videoFeed.style.display = 'block';
-            videoFeed.src = 'http://localhost:5000/lateral_espalda';
+            videoFeed.src = 'https://5b85-189-28-75-192.ngrok-free.app/lateral_espalda';
 
             // Iniciar el cronómetro después de 15 segundos
             countdownElement.innerText = "Empezando...";
