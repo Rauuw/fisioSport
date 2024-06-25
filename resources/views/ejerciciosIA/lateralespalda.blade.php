@@ -39,7 +39,7 @@
     <div id="countdown" style="font-size: 2rem; margin-top: 20px;"></div>
 
     <div>¿Finalizó las repeticiones con éxito?</div>
-    <form id="saveCorrectoForm" action="{{ route('saveCorrecto') }}" method="POST" style="display: none;">
+    <form id="saveCorrectoForm" action="{{ route('saveCorrecto', ['ejercicio_id' => $ejercicio->id]) }}" method="POST" style="display: none;">
         @csrf
         @method('PUT')
         <input type="hidden" name="segundos" id="segundosInput">
