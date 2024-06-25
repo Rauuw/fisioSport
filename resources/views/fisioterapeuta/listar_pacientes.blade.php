@@ -209,7 +209,7 @@
                                     <div class="col">
                                         <a href="{{ route('ver_historial', ['id' => $paciente->user->id]) }}"
                                             class="section3_btn btn4 btn-sm" style="font-size: .8rem; color: white;">
-                                            Ver Historial
+                                            Ver His
                                         </a>
                                     </div>
 
