@@ -18,7 +18,9 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/paciente', [App\Http\Controllers\FiseoterapeutaController::class, 'index'])->name('listar_pacientes');
   Route::post('/crear_paciente', [App\Http\Controllers\FiseoterapeutaController::class, 'crearPaciente'])->name('crear_paciente');
   Route::get('/dashboard/{id}', [App\Http\Controllers\DashboardController::class, 'show'])->name('dashboard');
-
+  Route::post('/saveHistorial', [App\Http\Controllers\HistorialController::class, 'saveHistorial'])->name('saveHistorial');
+  Route::view('/formHistorial/{id}', 'fisioterapeuta.historial')->name('formHistorial');
+  Route::get('/ver_historial/{id}', [App\Http\Controllers\HistorialController::class, 'getHistorial'])->name('ver_historial');
 
   Route::view('/martillo', 'ejerciciosIA.martillo')->name('martillo');
   Route::view('/entrelazada', 'ejerciciosIA.entrelazada')->name('entrelazada');
