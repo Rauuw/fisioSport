@@ -30,33 +30,32 @@
                 Your browser does not support the video tag.
           </video>
         </div>
-        <div class="col-sm-12">
-        <button onclick="startVideo()" class="btn btn-success">Empezar</button>
+    </div>
+   
+
+    <button onclick="startVideo()" class="btn btn-success">Empezar</button>
     <img id="video" src="" width="640" height="480" style="display: none;">
 
     <!-- Agregar el cronómetro -->
     <div id="countdown" style="font-size: 2rem; margin-top: 20px;"></div>
 
     <div>¿Finalizó las repeticiones con éxito?</div>
-    <form id="saveCorrectoForm" action="{{ route('saveCorrecto') }}" method="POST" style="display: none;">
-        @csrf
+    <form id="saveCorrectoForm" action="{{ route('saveCorrecto', ['ejercicio_id' => $ejercicio->id]) }}" method="POST" style="display: none;">
+    @csrf
+    @method('PUT')
         <input type="hidden" name="segundos" id="segundosInput">
     </form>
 
     <button onclick="saveCorrecto()" class="btn btn-success">Sí</button>
 
-        </div>
-    </div>
-   
-
-    
     <!-- Mostrar formulario para enviar los datos cuando no se completaron correctamente -->
     <button onclick="showForm()" class="btn btn-danger">No</button>
     <div id="form-container" style="display: none;" class="form-container card mb-3">
         <h3 class="card-header">Retroalimentación</h3>
 
-        <form id="saveFailForm" action="{{ route('saveIncorrecto') }}" method="POST" class="form-row">
-            @csrf
+        <form id="saveFailForm" action="{{ route('saveIncorrecto', ['ejercicio_id' => $ejercicio->id]) }}" method="POST" class="form-row">
+        @csrf
+        @method('PUT')
             <div class="form-group col-md-6">
                 <label for="repeticiones" class="form-label">¿Cuántas repeticiones realizaste?</label>
                 <input type="number" class="form-control" id="repeticiones" name="repeticiones" required>

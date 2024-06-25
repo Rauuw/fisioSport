@@ -31,8 +31,8 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/ejercicios/', [App\Http\Controllers\EjercicioController::class, 'index'])->name('listar_ejercicios');
   Route::get('/paciente',[App\Http\Controllers\FiseoterapeutaController::class, 'index'])->name('listar_pacientes');
   Route::post('/crear_paciente',[App\Http\Controllers\FiseoterapeutaController::class, 'crearPaciente'])->name('crear_paciente');
-  Route::post('/saveCorrecto', [App\Http\Controllers\RutinaEjercicioController::class, 'saveCorrecto'])->name('saveCorrecto');
-  Route::post('/saveIncorrecto', [App\Http\Controllers\RutinaEjercicioController::class, 'saveIncorrecto'])->name('saveIncorrecto');
+  Route::put('/saveCorrecto/{ejercicio_id}', [App\Http\Controllers\RutinaEjercicioController::class, 'saveCorrecto'])->name('saveCorrecto');
+  Route::put('/saveIncorrecto/{ejercicio_id}', [App\Http\Controllers\RutinaEjercicioController::class, 'saveIncorrecto'])->name('saveIncorrecto');
 
   Route::get('/rutina/{id}',[App\Http\Controllers\RutinaController::class, 'index'])->name('listar_rutina');
   Route::get('/ejercicios/',[App\Http\Controllers\EjercicioController::class, 'index'])->name('listar_ejercicios');
