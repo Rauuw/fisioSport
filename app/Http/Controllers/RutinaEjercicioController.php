@@ -112,7 +112,6 @@ class RutinaEjercicioController extends Controller
     public function saveCorrecto(Request $request,$ejercicio_id) {
         $noti = new NotificacionesController();
         $id_paciente = $noti->getPacienteByUser(auth()->user()->id);
-        dd($id_paciente,$ejercicio_id);
         $segundos = intval($request->input('segundos'));
     
         $rutinaEjercicios = RutinaEjercicio::where('paciente_id', $id_paciente)
