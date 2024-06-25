@@ -42,6 +42,7 @@
     <div>¿Finalizó las repeticiones con éxito?</div>
     <form id="saveCorrectoForm" action="{{ route('saveCorrecto') }}" method="POST" style="display: none;">
         @csrf
+        @method('PUT')
         <input type="hidden" name="segundos" id="segundosInput">
     </form>
 
@@ -54,6 +55,7 @@
 
         <form id="saveFailForm" action="{{ route('saveIncorrecto') }}" method="POST" class="form-row">
             @csrf
+            @method('PUT')
             <div class="form-group col-md-6">
                 <label for="repeticiones" class="form-label">¿Cuántas repeticiones realizaste?</label>
                 <input type="number" class="form-control" id="repeticiones" name="repeticiones" required>
