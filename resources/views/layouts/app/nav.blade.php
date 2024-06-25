@@ -57,6 +57,13 @@
                     </a>
                 </li>
 
+                <li class="nav-link">
+                    <a href="{{ route('ver_dashboard') }}">
+                        <i class='bx bx-file icon'></i>
+                        <span class="text nav-text">Reportes</span>
+                    </a>
+                </li>
+
             </ul>
 
         </div>

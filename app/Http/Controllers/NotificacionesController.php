@@ -19,6 +19,14 @@ class NotificacionesController extends Controller
         return view('notificaciones.index_notificaciones', compact('pacientes'));
     }
 
+    public function getMensajesByFisio2()
+    {
+        $rutinaEjercicioController = new RutinaEjercicioController();
+        $pacientes = $rutinaEjercicioController->getAllPacientesByFisio(auth()->user()->id);
+
+        return view('fisioterapeuta.index_dashboard', compact('pacientes'));
+    }
+
     public function saveMensajeFisio(Request $request)
     {
         $id_fisio = $this->getFisioByUser($request->input('fisioterapeuta_id'));

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 require(base_path('routes/route-list/route-auth.php'));
@@ -11,10 +12,13 @@ Route::middleware(['auth'])->group(function () {
   Route::post('/guardar_notificacion_fisio', [App\Http\Controllers\NotificacionesController::class, 'saveMensajeFisio'])->name('guardar_notificacion_fisio');
   Route::post('/guardar_notificacion_paciente', [App\Http\Controllers\NotificacionesController::class, 'saveMensajePaciente'])->name('guardar_notificacion_paciente');
   Route::get('/ver_notificaciones', [App\Http\Controllers\NotificacionesController::class, 'getMensajesByFisio'])->name('ver_notificaciones');
+  Route::get('/ver_dashboard', [App\Http\Controllers\NotificacionesController::class, 'getMensajesByFisio2'])->name('ver_dashboard');
   Route::get('/ver_mensajes/{id}', [App\Http\Controllers\NotificacionesController::class, 'verMensajesFisio'])->name('ver_mensajes');
   Route::get('/ver_mensajes_pacientes/{id}', [App\Http\Controllers\NotificacionesController::class, 'verMensajesPaciente'])->name('ver_mensajes_paciente');
   Route::get('/paciente', [App\Http\Controllers\FiseoterapeutaController::class, 'index'])->name('listar_pacientes');
   Route::post('/crear_paciente', [App\Http\Controllers\FiseoterapeutaController::class, 'crearPaciente'])->name('crear_paciente');
+  Route::get('/dashboard/{id}', [App\Http\Controllers\DashboardController::class, 'show'])->name('dashboard');
+
 
   Route::view('/martillo', 'ejerciciosIA.martillo')->name('martillo');
   Route::view('/entrelazada', 'ejerciciosIA.entrelazada')->name('entrelazada');
