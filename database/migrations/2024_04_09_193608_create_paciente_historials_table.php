@@ -12,21 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('paciente_historials', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            /* $table->bigIncrements('id');
             $table->date('fecha_creaciom');
             $table->string('diagnostico');
             $table->string('sintomas');
             
-            $table->foreignId('paciente_id')->nullable()
-            ->constrained('pacientes')
-            ->cascadeOnUpdate()
-            ->nullOnDelete();
+           
 
             $table->foreignId('historial_id')->nullable()
             ->constrained('historial')
             ->cascadeOnUpdate()
-            ->nullOnDelete();
-            $table->timestamps();
+            ->nullOnDelete();*/
+            $table->timestamps(); 
         });
     }
 

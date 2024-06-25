@@ -13,8 +13,13 @@ return new class extends Migration
     {
         Schema::create('historial', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('fecha_creaciom');
+            $table->date('fecha_creacion');
+            $table->date('historial');
 
+            $table->foreignId('paciente_id')->nullable()
+            ->constrained('pacientes')
+            ->cascadeOnUpdate()
+            ->nullOnDelete();
             $table->timestamps();
         });
     }

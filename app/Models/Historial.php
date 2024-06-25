@@ -11,11 +11,13 @@ class Historial extends Model
     protected $table = 'historial';
 
     protected $fillable = [
-        'fecha_creaciom',
+        'fecha_creacion',
+        'historial',
+        'paciente_id'
     ];
     
     public function paciente()
     {
-        return $this->belongsToMany(Paciente::class, 'paciente_historial', 'fisioterapeuta_id', 'paciente_id');
+        return $this->belongsTo(Paciente::class, 'paciente_id');
     }
 }

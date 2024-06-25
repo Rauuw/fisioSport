@@ -32,6 +32,6 @@ class Paciente extends Model
 
     public function historial()
     {
-        return $this->belongsToMany(Historial::class, 'paciente_historial', 'paciente_id', 'fisioterapeuta_id');
+        return $this->hasOne(Historial::class, 'id');
     }
 }
