@@ -19,11 +19,18 @@
     </div>
     <br>
     <!-- Mostrar el video de YouTube -->
-    <div class="youtube-video">
+  <!--   <div class="youtube-video">
         <iframe width="350" height="200" src="https://www.youtube.com/embed/j99intoPKGE" frameborder="0"
             allowfullscreen></iframe>
+    </div> -->
+    <div class="row">
+        <div class="col-sm-12">
+            <video width="350" height="200" controls>
+                <source src="{{ asset('storage/'.$ejercicio->url_video_demostrativo) }}" type="video/mp4">
+                Your browser does not support the video tag.
+          </video>
+        </div>
     </div>
-
     <br>
 
     <button onclick="startVideo()" class="btn btn-success">Empezar</button>

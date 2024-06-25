@@ -19,12 +19,19 @@
     </div>
     <br>
     <!-- Mostrar el video de YouTube -->
-    <div class="youtube-video">
+    <!-- <div class="youtube-video">
         <iframe width="350" height="200" src="https://www.youtube.com/embed/j99intoPKGE" frameborder="0"
             allowfullscreen></iframe>
-    </div>
-
-    <button onclick="startVideo()" class="btn btn-success">Empezar</button>
+    </div> -->
+    <div class="row">
+        <div class="col-sm-12">
+            <video width="350" height="200" controls>
+                <source src="{{ asset('storage/'.$ejercicio->url_video_demostrativo) }}" type="video/mp4">
+                Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="col-sm-12">
+        <button onclick="startVideo()" class="btn btn-success">Empezar</button>
     <img id="video" src="" width="640" height="480" style="display: none;">
 
     <!-- Agregar el cronómetro -->
@@ -38,6 +45,11 @@
 
     <button onclick="saveCorrecto()" class="btn btn-success">Sí</button>
 
+        </div>
+    </div>
+   
+
+    
     <!-- Mostrar formulario para enviar los datos cuando no se completaron correctamente -->
     <button onclick="showForm()" class="btn btn-danger">No</button>
     <div id="form-container" style="display: none;" class="form-container card mb-3">
