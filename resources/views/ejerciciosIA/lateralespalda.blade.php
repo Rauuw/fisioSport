@@ -52,7 +52,7 @@
     <div id="form-container" style="display: none;" class="form-container card mb-3">
         <h3 class="card-header">Retroalimentación</h3>
 
-        <form id="saveFailForm" action="{{ route('saveIncorrecto') }}" method="POST" class="form-row">
+        <form id="saveFailForm" action="{{ route('saveIncorrecto', ['ejercicio_id' => $ejercicio->id]) }}" method="POST" class="form-row">
             @csrf
             @method('PUT')
             <div class="form-group col-md-6">
