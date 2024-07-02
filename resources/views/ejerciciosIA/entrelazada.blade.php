@@ -24,17 +24,18 @@
             allowfullscreen></iframe>
     </div> -->
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-4">
             <video width="350" height="200" controls>
                 <source src="{{ asset('storage/'.$ejercicio->url_video_demostrativo) }}" type="video/mp4">
                 Your browser does not support the video tag.
           </video>
+          <button onclick="startVideo()" class="btn btn-success">Empezar</button>
+        </div>
+        <div class="col-sm-6">
+        <img id="video" src="" width="640" height="480" style="display: none;">
         </div>
     </div>
     <br>
-
-    <button onclick="startVideo()" class="btn btn-success">Empezar</button>
-    <img id="video" src="" width="640" height="480" style="display: none;">
 
     <!-- Agregar el cronómetro -->
     <div id="countdown" style="font-size: 2rem; margin-top: 20px;"></div>

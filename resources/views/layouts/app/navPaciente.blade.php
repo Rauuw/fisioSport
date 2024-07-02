@@ -67,7 +67,7 @@
                         <span class="text nav-text">Mis Rutinas</span>
                     </a>
                 </li>
-                <li class="nav-link">
+             <!--    <li class="nav-link">
                     <a href="#" class="toggle-link" data-target="#ejercicios">
                         <i class='bx bx-run icon'></i>
                         <span class="text nav-text">Ejercicios</span>
@@ -81,7 +81,7 @@
                         </li>
                     </ul>
 
-                </li>
+                </li> -->
 
                 <li class="nav-link">
                     <a href="{{ route('crear_notificacion_paciente') }}">
