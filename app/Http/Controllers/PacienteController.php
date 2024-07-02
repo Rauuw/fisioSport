@@ -21,7 +21,8 @@ class PacienteController extends Controller
         foreach ($pacientesEjercicios as $ejercicio) {
             $eje = Ejercicio::find($ejercicio->ejercicio_id);
             if ( $eje) {
-                $rutina = $eje; // Agregar el ejercicio como una propiedad de la rutina
+                $rutina = $eje; 
+                $rutina->accion = $ejercicio->accion;// Agregar el ejercicio como una propiedad de la rutina
                 $rutinasPaciente->push($rutina);
             }
         }

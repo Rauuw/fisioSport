@@ -25,6 +25,7 @@ Mis Rutinas
                         <tr>
                             <th scope="col">Nombre Ejercicio</th>
                             <th scope="col">Repeticiones</th>
+                            <th scope="col">Estado</th>
                             <th scope="col">Accion</th>
                         </tr>
                     </thead>
@@ -33,8 +34,14 @@ Mis Rutinas
                     @foreach($rutinasPaciente as $rutinasPaciente)
                         <tr>
                             <td>{{$rutinasPaciente->nombre}}</td>
-                           
                             <td>{{$rutinasPaciente->repeticiones}}</td>
+                            <td>
+                                @if($rutinasPaciente->accion)
+                                    completo
+                                @else
+                                    incompleto
+                                @endif
+                            </td>
                             <td>
                                 <div class="row">
                                 
