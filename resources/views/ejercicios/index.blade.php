@@ -3,8 +3,6 @@
 @section('title','Lista Ejercicios')
 @section('h-title')
     Lista Ejercicios
-    <a href="" class="btn btn-primary">Agregar Ejercicio</a>
-    <a href="" class="btn btn-secondary">Exportar</a>
 @endsection
 @section('card-title','')
 

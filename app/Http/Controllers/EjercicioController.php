@@ -21,10 +21,15 @@ class EjercicioController extends Controller
             'descripcion' => 'required',
             'video_demostrativo' => 'required|mimes:mp4|max:102400', // Max 100MB
         ]);
-
-        // Guardar el video en el directorio de almacenamiento
-        $videoPath = $request->file('video_demostrativo')->store('videos', 'public');
-
+    
+        // Obtener el nombre del archivo original
+        $originalExtension = $request->file('video_demostrativo')->getClientOriginalExtension();
+    
+        // Crear un nombre de archivo único utilizando el campo 'nombre'
+        $filename = $request->nombre . '.' . $originalExtension;
+    
+        // Guardar el video en el directorio de almacenamiento con el nombre proporcionado
+        $videoPath = $request->file('video_demostrativo')->storeAs('videos', $filename, 'public');
         // Crear un nuevo registro de ejercicio
         Ejercicio::create([
             'nombre' => $request->nombre,
@@ -33,10 +38,12 @@ class EjercicioController extends Controller
             'repeticiones' => $request->repeticiones,
             'url_video_demostrativo' => $videoPath,
         ]);
-
+    
         // Redirigir o retornar una respuesta según necesites
         return redirect()->back()->with('success', 'Video subido exitosamente.');
     }
+    
+
 
     
     public function edit($id)
